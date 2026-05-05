@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Ride the Future",
+    "subtitle": "Premium motorcycles & scooters — gas and electric — at prices that give back.",
+    "cta": "Browse Bikes",
+    "ctaContact": "Contact Us"
+  },
+  "categories": {
+    "title": "Our Categories",
+    "motorcycles": "Motorcycles",
+    "scooters": "Scooters",
+    "electric": "Electric"
+  },
+  "featured": {
+    "title": "Featured Rides",
+    "subtitle": "Hand-picked from our latest arrivals",
+    "viewAll": "View All Bikes",
+    "askPrice": "Ask for Price",
+    "inquire": "Inquire on WhatsApp",
+    "specs": "Specs",
+    "engine": "Engine",
+    "power": "Power",
+    "topSpeed": "Top Speed"
+  },
+  "whyUs": {
+    "title": "Why Cash Back Moto?",
+    "subtitle": "We don't just sell bikes — we deliver confidence on two wheels.",
+    "price": {
+      "title": "Unbeatable Prices",
+      "desc": "Direct import pricing with cashback offers you won't find anywhere else."
+    },
+    "quality": {
+      "title": "Quality Guaranteed",
+      "desc": "Every bike inspected and certified before it reaches your hands."
+    },
+    "support": {
+      "title": "After-Sale Support",
+      "desc": "Warranty coverage and dedicated service center for all your needs."
+    },
+    "variety": {
+      "title": "Wide Selection",
+      "desc": "From daily commuters to sport bikes — gas and electric, we have it all."
+    }
+  },
+  "cta": {
+    "title": "Ready to Ride?",
+    "subtitle": "Get in touch today and find your perfect bike. We're just a message away.",
+    "whatsapp": "Chat on WhatsApp",
+    "call": "Call Us Now"
+  },
+  "catalog": {
+    "title": "Our Catalog",
+    "subtitle": "Browse our full collection of motorcycles and scooters",
+    "filterAll": "All",
+    "filterMotorcycle": "Motorcycles",
+    "filterScooter": "Scooters",
+    "filterElectric": "Electric",
+    "fuelGas": "Gas",
+    "fuelElectric": "Electric",
+    "sortDefault": "Default",
+    "sortPriceLow": "Price: Low to High",
+    "sortPriceHigh": "Price: High to Low",
+    "sortName": "Name: A-Z",
+    "noResults": "No bikes found matching your filters.",
+    "resetFilters": "Reset Filters",
+    "inquire": "Inquire via WhatsApp",
+    "viewDetails": "View Details",
+    "askPrice": "Ask for Price",
+    "backToCatalog": "Back to Catalog",
+    "specifications": "Specifications",
+    "engine": "Engine",
+    "power": "Power",
+    "topSpeed": "Top Speed",
+    "fuelType": "Fuel Type",
+    "year": "Year",
+    "category": "Category",
+    "description": "Description",
+    "gallery": "Gallery",
+    "interestedMessage": "Hello, I'm interested in the {bike}. Is it available?",
+    "searchPlaceholder": "Search bikes..."
+  },
+  "about": {
+    "title": "About Cash Back Moto",
+    "subtitle": "Your trusted destination for motorcycles & scooters in Egypt",
+    "storyTitle": "Our Story",
+    "storyP1": "Cash Back Moto was born from a simple idea: everyone deserves a reliable ride at a fair price. Founded in Egypt, we've grown into a trusted name for motorcycles and scooters — serving daily commuters, young riders, and businesses alike.",
+    "storyP2": "We specialize in both gas-powered and electric two-wheelers, offering the latest models from top brands. Our name says it all — you always get more value for your money with Cash Back Moto.",
+    "missionTitle": "What We Offer",
+    "mission1": "Brand-new gas & electric motorcycles",
+    "mission2": "Affordable scooters for daily commuting",
+    "mission3": "Bulk orders for delivery businesses",
+    "mission4": "After-sale service & warranty support",
+    "statsTitle": "By the Numbers",
+    "statBikes": "Bikes Sold",
+    "statCustomers": "Happy Customers",
+    "statYears": "Years in Business",
+    "statModels": "Models Available",
+    "locationTitle": "Visit Us",
+    "locationDesc": "Come see our bikes in person. Our showroom is open daily.",
+    "addressTBD": "Address coming soon",
+    "contactTitle": "Get in Touch",
+    "contactDesc": "Reach out through any of these channels"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help you find your perfect ride",
+    "callUs": "Call Us",
+    "callDesc": "Speak directly with our team",
+    "whatsapp": "WhatsApp",
+    "whatsappDesc": "Quick replies, always available",
+    "visitUs": "Visit Us",
+    "visitDesc": "Come see our bikes in person",
+    "addressTBD": "Address coming soon",
+    "followUs": "Follow Us",
+    "followDesc": "Stay updated on latest arrivals",
+    "formTitle": "Send Us a Message",
+    "formSubtitle": "Fill out the form and we'll get back to you via WhatsApp",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "Enter your name",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us what you're looking for...",
+    "send": "Send via WhatsApp",
+    "mapTitle": "Find Us"
+  },
+  "footer": {
+    "description": "Your trusted destination for motorcycles & scooters in Egypt. Gas and electric — we have it all.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp"
+  },
+  "languageSwitcher": {
+    "en": "English",
+    "ar": "عربي"
+  }
+}
