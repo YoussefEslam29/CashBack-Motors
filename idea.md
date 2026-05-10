@@ -141,10 +141,47 @@ This is the main conversion mechanism until e-commerce is built.
 
 ---
 
-## 10. Open Questions
+## 10. Brands & Inventory
+
+Cash Back Moto carries **7 brands**, each with specific categories:
+
+| Brand | Scooter | Motorcycle | Electric |
+|---|---|---|---|
+| ZONTOS | ✅ | ✅ | ❌ |
+| SYM | ✅ | ❌ | ❌ |
+| KEEWAY | ✅ | ✅ | ✅ |
+| HOGAN | ✅ | ✅ | ❌ |
+| DAYUN | ✅ | ❌ | ❌ |
+| BENELLI | ❌ | ✅ | ❌ |
+| VIGOREY | ✅ | ✅ | ✅ |
+
+### Catalog Filters (derived from brands above)
+- **Type:** Scooter · Motorcycle
+- **Fuel:** Gas · Electric
+- **Brand:** All 7 brands (dropdown or pill filter)
+
+---
+
+## 11. Pricing Strategy
+
+Prices are **hidden** on the website. Every product shows a **"Ask for Price"** CTA instead, routing the customer to WhatsApp or a phone call. This keeps pricing flexible and drives direct contact.
+
+---
+
+## 12. Locations
+
+The shop has **two branches**:
+
+| Branch | Google Maps |
+|---|---|
+| Alexandria | https://maps.app.goo.gl/omChfM4oFsqhCepE7 |
+| Cairo | https://maps.app.goo.gl/USLPyWr7Mjdbr9x1A |
+
+Both locations will be embedded as Google Maps iframes on the Contact page and About page, side by side on desktop, stacked on mobile.
+
+---
+
+## 13. Open Questions
 
 - [ ] Will the client manage their own inventory? → Determines whether to add a CMS
-- [ ] What is the shop's address? → Needed for the map embed and SEO
 - [ ] Do they have a preferred domain name already?
-- [ ] Are there specific bike brands / models they want featured first?
-- [ ] Should prices be shown publicly, or hidden behind a "contact us" prompt?
