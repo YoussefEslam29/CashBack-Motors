@@ -8,6 +8,7 @@ import {
   MapPin,
   Users,
   Send,
+  Navigation,
 } from "lucide-react";
 import {
   FaFacebookF,
@@ -48,7 +49,7 @@ export default function ContactPage() {
       icon: MapPin,
       title: t("visitUs"),
       desc: t("visitDesc"),
-      value: t("addressTBD"),
+      value: t("twoBranches"),
       color: "text-yellow-400",
       borderColor: "hover:border-yellow-400",
     },
@@ -77,6 +78,21 @@ export default function ContactPage() {
       icon: FaTiktok,
       href: "https://www.tiktok.com/@cashbackmoto",
       label: "TikTok",
+    },
+  ];
+
+  const branches = [
+    {
+      name: t("branchAlex"),
+      mapsLink: "https://maps.app.goo.gl/omChfM4oFsqhCepE7",
+      embedUrl:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3412.123!2d29.9!3d31.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDEyJzAwLjAiTiAyOcKwNTQnMDAuMCJF!5e0!3m2!1sen!2seg!4v1",
+    },
+    {
+      name: t("branchCairo"),
+      mapsLink: "https://maps.app.goo.gl/USLPyWr7Mjdbr9x1A",
+      embedUrl:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.123!2d31.2!3d30.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAwJzAwLjAiTiAzMcKwMTInMDAuMCJF!5e0!3m2!1sen!2seg!4v1",
     },
   ];
 
@@ -144,7 +160,9 @@ export default function ContactPage() {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-text-muted text-sm">{card.value}</p>
+                    <p className="text-text-primary text-sm font-medium">
+                      {card.value}
+                    </p>
                   )}
                 </div>
               </div>
@@ -152,8 +170,8 @@ export default function ContactPage() {
           ))}
         </div>
 
-        {/* Form + Map */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Form + Map Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Form */}
           <div className="glass-card rounded-2xl p-8 hover:transform-none">
             <h2 className="text-2xl font-bold text-text-primary mb-2">
@@ -219,19 +237,84 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* Map placeholder */}
-          <div className="glass-card rounded-2xl p-8 hover:transform-none flex flex-col">
-            <h2 className="text-2xl font-bold text-text-primary mb-2">
-              {t("mapTitle")}
-            </h2>
-            <div className="flex-1 mt-4 bg-bg-elevated rounded-xl border border-border flex items-center justify-center min-h-[300px]">
-              <div className="text-center">
-                <MapPin className="w-16 h-16 text-text-muted mx-auto mb-4 animate-float" />
-                <p className="text-text-muted text-lg font-medium">
-                  {t("addressTBD")}
-                </p>
+          {/* Quick CTA Card */}
+          <div className="flex flex-col gap-8">
+            <div className="glass-card rounded-2xl p-8 hover:transform-none flex-1 flex flex-col justify-center">
+              <h2 className="text-2xl font-bold text-text-primary mb-4">
+                {t("quickContact")}
+              </h2>
+              <p className="text-text-secondary mb-6">
+                {t("quickContactDesc")}
+              </p>
+              <div className="flex flex-col gap-3">
+                <a
+                  href="https://wa.me/201110782513"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-3 px-6 py-4 bg-whatsapp hover:bg-whatsapp/90 rounded-xl text-white font-bold transition-all duration-300 hover:scale-[1.02]"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  {t("whatsapp")}
+                </a>
+                <a
+                  href="tel:01005804463"
+                  className="flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-xl text-text-secondary hover:text-primary font-bold transition-all duration-300"
+                >
+                  <Phone className="w-5 h-5" />
+                  {t("callUs")}
+                </a>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Maps Section — Two Branches */}
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-text-primary mb-10">
+            <span className="gradient-text">{t("mapTitle")}</span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {branches.map((branch) => (
+              <div
+                key={branch.name}
+                className="glass-card rounded-2xl overflow-hidden hover:transform-none"
+              >
+                <div className="p-6 border-b border-border">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-bold text-text-primary">
+                        {branch.name}
+                      </h3>
+                    </div>
+                    <a
+                      href={branch.mapsLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-all duration-300"
+                    >
+                      <Navigation className="w-4 h-4" />
+                      {t("getDirections")}
+                    </a>
+                  </div>
+                </div>
+                <div className="h-72">
+                  <iframe
+                    src={branch.embedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={branch.name}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

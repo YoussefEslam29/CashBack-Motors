@@ -15,6 +15,7 @@ import {
   Calendar,
   Tag,
   Settings,
+  Building2,
 } from "lucide-react";
 
 export default function ProductDetailClient({
@@ -30,6 +31,11 @@ export default function ProductDetailClient({
   const description = isRtl ? product.descriptionAr : product.description;
 
   const specs = [
+    {
+      icon: Building2,
+      label: t("brand"),
+      value: product.brand,
+    },
     {
       icon: Settings,
       label: t("engine"),
@@ -67,8 +73,8 @@ export default function ProductDetailClient({
 
   const whatsappMsg = encodeURIComponent(
     isRtl
-      ? `مرحبا، أنا مهتم بـ ${product.nameAr}. هل هي متاحة؟`
-      : `Hello, I'm interested in the ${product.name}. Is it available?`
+      ? `مرحبا، أنا مهتم بـ ${product.nameAr} (${product.brand}). هل هي متاحة؟ وكم سعرها؟`
+      : `Hello, I'm interested in the ${product.name} (${product.brand}). Is it available? What's the price?`
   );
 
   return (
@@ -114,6 +120,13 @@ export default function ProductDetailClient({
                 {product.fuel === "electric" ? t("fuelElectric") : t("fuelGas")}
               </span>
             </div>
+
+            {/* Brand badge */}
+            <div className="absolute top-4 left-4">
+              <span className="px-4 py-1.5 rounded-full text-sm font-bold bg-primary/20 text-primary border border-primary/30 backdrop-blur-sm">
+                {product.brand}
+              </span>
+            </div>
           </div>
 
           {/* Details */}
@@ -122,12 +135,15 @@ export default function ProductDetailClient({
               {name}
             </h1>
 
-            {/* Price */}
-            <p className="text-3xl font-black text-primary mb-6">
-              {product.price
-                ? `EGP ${product.price.toLocaleString()}`
-                : t("askPrice")}
-            </p>
+            {/* Ask for Price CTA */}
+            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-xl">
+              <p className="text-2xl font-black text-primary mb-1">
+                {t("askPrice")}
+              </p>
+              <p className="text-sm text-text-secondary">
+                {t("priceContact")}
+              </p>
+            </div>
 
             {/* Description */}
             <div className="mb-8">

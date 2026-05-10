@@ -17,6 +17,10 @@
     "scooters": "Scooters",
     "electric": "Electric"
   },
+  "brands": {
+    "title": "Our Brands",
+    "subtitle": "We carry the top brands in the market"
+  },
   "featured": {
     "title": "Featured Rides",
     "subtitle": "Hand-picked from our latest arrivals",
@@ -48,6 +52,10 @@
       "desc": "From daily commuters to sport bikes — gas and electric, we have it all."
     }
   },
+  "social": {
+    "title": "Follow Us",
+    "subtitle": "Stay updated with our latest arrivals and offers"
+  },
   "cta": {
     "title": "Ready to Ride?",
     "subtitle": "Get in touch today and find your perfect bike. We're just a message away.",
@@ -72,6 +80,7 @@
     "inquire": "Inquire via WhatsApp",
     "viewDetails": "View Details",
     "askPrice": "Ask for Price",
+    "priceContact": "Contact us via WhatsApp or call for pricing details",
     "backToCatalog": "Back to Catalog",
     "specifications": "Specifications",
     "engine": "Engine",
@@ -80,10 +89,14 @@
     "fuelType": "Fuel Type",
     "year": "Year",
     "category": "Category",
+    "brand": "Brand",
     "description": "Description",
     "gallery": "Gallery",
-    "interestedMessage": "Hello, I'm interested in the {bike}. Is it available?",
-    "searchPlaceholder": "Search bikes..."
+    "interestedMessage": "Hello, I'm interested in the {bike}. Is it available? What's the price?",
+    "searchPlaceholder": "Search bikes...",
+    "allBrands": "All Brands",
+    "filters": "Filters",
+    "resultsCount": "{count} bikes found"
   },
   "about": {
     "title": "About Cash Back Moto",
@@ -96,14 +109,17 @@
     "mission2": "Affordable scooters for daily commuting",
     "mission3": "Bulk orders for delivery businesses",
     "mission4": "After-sale service & warranty support",
+    "brandsTitle": "Our Brands",
     "statsTitle": "By the Numbers",
     "statBikes": "Bikes Sold",
     "statCustomers": "Happy Customers",
     "statYears": "Years in Business",
     "statModels": "Models Available",
     "locationTitle": "Visit Us",
-    "locationDesc": "Come see our bikes in person. Our showroom is open daily.",
-    "addressTBD": "Address coming soon",
+    "locationDesc": "Come see our bikes in person. Our showrooms are open daily.",
+    "branchAlex": "Alexandria Branch",
+    "branchCairo": "Cairo Branch",
+    "getDirections": "Directions",
     "contactTitle": "Get in Touch",
     "contactDesc": "Reach out through any of these channels"
   },
@@ -116,7 +132,7 @@
     "whatsappDesc": "Quick replies, always available",
     "visitUs": "Visit Us",
     "visitDesc": "Come see our bikes in person",
-    "addressTBD": "Address coming soon",
+    "twoBranches": "Alexandria & Cairo branches",
     "followUs": "Follow Us",
     "followDesc": "Stay updated on latest arrivals",
     "formTitle": "Send Us a Message",
@@ -128,7 +144,12 @@
     "messageLabel": "Message",
     "messagePlaceholder": "Tell us what you're looking for...",
     "send": "Send via WhatsApp",
-    "mapTitle": "Find Us"
+    "mapTitle": "Our Locations",
+    "branchAlex": "Alexandria Branch",
+    "branchCairo": "Cairo Branch",
+    "getDirections": "Directions",
+    "quickContact": "Quick Contact",
+    "quickContactDesc": "Prefer to reach us directly? Use these quick contact options."
   },
   "footer": {
     "description": "Your trusted destination for motorcycles & scooters in Egypt. Gas and electric — we have it all.",

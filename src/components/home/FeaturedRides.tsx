@@ -63,6 +63,13 @@ export default function FeaturedRides() {
                     {product.fuel === "electric" ? "Electric" : "Gas"}
                   </span>
                 </div>
+
+                {/* Brand badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/30">
+                    {product.brand}
+                  </span>
+                </div>
               </div>
 
               {/* Content */}
@@ -71,11 +78,9 @@ export default function FeaturedRides() {
                   {locale === "ar" ? product.nameAr : product.name}
                 </h3>
 
-                {/* Price */}
+                {/* Ask for Price */}
                 <p className="text-2xl font-black text-primary mb-4">
-                  {product.price
-                    ? `EGP ${product.price.toLocaleString()}`
-                    : t("askPrice")}
+                  {t("askPrice")}
                 </p>
 
                 {/* Quick Specs */}
@@ -99,8 +104,8 @@ export default function FeaturedRides() {
                   <a
                     href={`https://wa.me/201110782513?text=${encodeURIComponent(
                       locale === "ar"
-                        ? `مرحبا، أنا مهتم بـ ${product.nameAr}. هل هي متاحة؟`
-                        : `Hello, I'm interested in the ${product.name}. Is it available?`
+                        ? `مرحبا، أنا مهتم بـ ${product.nameAr}. هل هي متاحة؟ وكم سعرها؟`
+                        : `Hello, I'm interested in the ${product.name}. Is it available? What's the price?`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"

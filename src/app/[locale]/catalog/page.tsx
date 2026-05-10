@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useState, useMemo } from "react";
-import { products } from "@/data/products";
+import { products, brands } from "@/data/products";
 import {
   Search,
   SlidersHorizontal,
@@ -13,6 +13,7 @@ import {
   Fuel,
   Eye,
   X,
+  ChevronDown,
 } from "lucide-react";
 
 type FilterType = "all" | "motorcycle" | "scooter";
@@ -25,6 +26,7 @@ export default function CatalogPage() {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState<FilterType>("all");
   const [fuelFilter, setFuelFilter] = useState<FuelFilter>("all");
+  const [brandFilter, setBrandFilter] = useState<string>("all");
   const [showFilters, setShowFilters] = useState(false);
 
   const filtered = useMemo(() => {
@@ -37,7 +39,8 @@ export default function CatalogPage() {
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.nameAr.includes(q) ||
-          p.description.toLowerCase().includes(q)
+          p.description.toLowerCase().includes(q) ||
+          p.brand.toLowerCase().includes(q)
       );
     }
 
@@ -51,8 +54,13 @@ export default function CatalogPage() {
       result = result.filter((p) => p.fuel === fuelFilter);
     }
 
+    // Brand filter
+    if (brandFilter !== "all") {
+      result = result.filter((p) => p.brand === brandFilter);
+    }
+
     return result;
-  }, [search, typeFilter, fuelFilter]);
+  }, [search, typeFilter, fuelFilter, brandFilter]);
 
   const typeButtons: { key: FilterType; label: string }[] = [
     { key: "all", label: t("filterAll") },
@@ -70,9 +78,11 @@ export default function CatalogPage() {
     setSearch("");
     setTypeFilter("all");
     setFuelFilter("all");
+    setBrandFilter("all");
   };
 
-  const hasActiveFilters = search || typeFilter !== "all" || fuelFilter !== "all";
+  const hasActiveFilters =
+    search || typeFilter !== "all" || fuelFilter !== "all" || brandFilter !== "all";
 
   return (
     <div className="pt-24 pb-20">
@@ -117,7 +127,12 @@ export default function CatalogPage() {
               className="flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-lg text-text-secondary hover:border-primary hover:text-primary transition-all"
             >
               <SlidersHorizontal className="w-4 h-4" />
-              Filters
+              {t("filters")}
+              <ChevronDown
+                className={`w-3 h-3 transition-transform duration-300 ${
+                  showFilters ? "rotate-180" : ""
+                }`}
+              />
             </button>
           </div>
 
@@ -161,6 +176,23 @@ export default function CatalogPage() {
               ))}
             </div>
 
+            {/* Brand Filter */}
+            <div className="relative">
+              <select
+                value={brandFilter}
+                onChange={(e) => setBrandFilter(e.target.value)}
+                className="appearance-none bg-bg-card border border-border rounded-xl px-4 py-2.5 pr-10 text-sm font-medium text-text-secondary hover:border-primary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30 transition-all cursor-pointer"
+              >
+                <option value="all">{t("allBrands")}</option>
+                {brands.map((brand) => (
+                  <option key={brand} value={brand}>
+                    {brand}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
+            </div>
+
             {/* Clear */}
             {hasActiveFilters && (
               <button
@@ -172,6 +204,13 @@ export default function CatalogPage() {
               </button>
             )}
           </div>
+        </div>
+
+        {/* Results count */}
+        <div className="mb-6 text-center">
+          <p className="text-text-muted text-sm">
+            {t("resultsCount", { count: filtered.length })}
+          </p>
         </div>
 
         {/* Results */}
@@ -224,6 +263,13 @@ export default function CatalogPage() {
                         : t("fuelGas")}
                     </span>
                   </div>
+
+                  {/* Brand badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/30">
+                      {product.brand}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -235,11 +281,9 @@ export default function CatalogPage() {
                     {product.specs.engine} · {product.specs.topSpeed}
                   </p>
 
-                  {/* Price */}
-                  <p className="text-2xl font-black text-primary mb-5">
-                    {product.price
-                      ? `EGP ${product.price.toLocaleString()}`
-                      : t("askPrice")}
+                  {/* Ask for Price CTA */}
+                  <p className="text-xl font-black text-primary mb-5">
+                    {t("askPrice")}
                   </p>
 
                   {/* Actions */}
@@ -254,8 +298,8 @@ export default function CatalogPage() {
                     <a
                       href={`https://wa.me/201110782513?text=${encodeURIComponent(
                         locale === "ar"
-                          ? `مرحبا، أنا مهتم بـ ${product.nameAr}. هل هي متاحة؟`
-                          : `Hello, I'm interested in the ${product.name}. Is it available?`
+                          ? `مرحبا، أنا مهتم بـ ${product.nameAr}. هل هي متاحة؟ وكم سعرها؟`
+                          : `Hello, I'm interested in the ${product.name}. Is it available? What's the price?`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
