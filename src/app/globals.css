@@ -20,9 +20,10 @@
   --color-success: #00CC66;
   --color-whatsapp: #25D366;
 
-  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-arabic: 'Noto Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+  --font-display: var(--font-display), 'Barlow Condensed', sans-serif;
+  --font-heading: var(--font-display), 'Barlow Condensed', sans-serif;
+  --font-body: var(--font-body), 'DM Sans', sans-serif;
+  --font-arabic: var(--font-arabic), 'Cairo', sans-serif;
 }
 
 /* Base styles */

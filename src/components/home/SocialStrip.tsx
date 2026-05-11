@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaTiktok,
 } from "react-icons/fa";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 export default function SocialStrip() {
   const t = useTranslations("social");
@@ -13,19 +14,19 @@ export default function SocialStrip() {
   const socials = [
     {
       icon: FaFacebookF,
-      href: "https://www.facebook.com/Cashbackmotoo",
+      href: SOCIAL_LINKS.facebook,
       label: "Facebook",
       color: "hover:bg-[#1877F2]/10 hover:text-[#1877F2] hover:border-[#1877F2]/30",
     },
     {
       icon: FaInstagram,
-      href: "https://www.instagram.com/cashbackmoto",
+      href: SOCIAL_LINKS.instagram,
       label: "Instagram",
       color: "hover:bg-[#E4405F]/10 hover:text-[#E4405F] hover:border-[#E4405F]/30",
     },
     {
       icon: FaTiktok,
-      href: "https://www.tiktok.com/@cashbackmoto",
+      href: SOCIAL_LINKS.tiktok,
       label: "TikTok",
       color: "hover:bg-[#00f2ea]/10 hover:text-[#00f2ea] hover:border-[#00f2ea]/30",
     },

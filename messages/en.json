@@ -6,8 +6,8 @@
     "contact": "Contact"
   },
   "hero": {
-    "tagline": "Ride the Future",
-    "subtitle": "Premium motorcycles & scooters — gas and electric — at prices that give back.",
+    "tagline": "FIND YOUR RIDE",
+    "subtitle": "Gas or electric. New or classic. We have it all.",
     "cta": "Browse Bikes",
     "ctaContact": "Contact Us"
   },
@@ -22,15 +22,15 @@
     "subtitle": "We carry the top brands in the market"
   },
   "featured": {
+    "eyebrow": "Our Fleet",
     "title": "Featured Rides",
     "subtitle": "Hand-picked from our latest arrivals",
     "viewAll": "View All Bikes",
     "askPrice": "Ask for Price",
     "inquire": "Inquire on WhatsApp",
     "specs": "Specs",
-    "engine": "Engine",
-    "power": "Power",
-    "topSpeed": "Top Speed"
+    "cairoWhatsapp": "Cairo WhatsApp",
+    "alexWhatsapp": "Alex WhatsApp"
   },
   "whyUs": {
     "title": "Why Cash Back Moto?",
@@ -60,7 +60,9 @@
     "title": "Ready to Ride?",
     "subtitle": "Get in touch today and find your perfect bike. We're just a message away.",
     "whatsapp": "Chat on WhatsApp",
-    "call": "Call Us Now"
+    "call": "Call Us Now",
+    "cairo": "Cairo Branch",
+    "alexandria": "Alexandria Branch"
   },
   "catalog": {
     "title": "Our Catalog",
@@ -68,13 +70,9 @@
     "filterAll": "All",
     "filterMotorcycle": "Motorcycles",
     "filterScooter": "Scooters",
-    "filterElectric": "Electric",
+    "filterElectric": "Electric Only",
     "fuelGas": "Gas",
     "fuelElectric": "Electric",
-    "sortDefault": "Default",
-    "sortPriceLow": "Price: Low to High",
-    "sortPriceHigh": "Price: High to Low",
-    "sortName": "Name: A-Z",
     "noResults": "No bikes found matching your filters.",
     "resetFilters": "Reset Filters",
     "inquire": "Inquire via WhatsApp",
@@ -83,20 +81,18 @@
     "priceContact": "Contact us via WhatsApp or call for pricing details",
     "backToCatalog": "Back to Catalog",
     "specifications": "Specifications",
-    "engine": "Engine",
-    "power": "Power",
-    "topSpeed": "Top Speed",
-    "fuelType": "Fuel Type",
-    "year": "Year",
-    "category": "Category",
-    "brand": "Brand",
     "description": "Description",
     "gallery": "Gallery",
-    "interestedMessage": "Hello, I'm interested in the {bike}. Is it available? What's the price?",
     "searchPlaceholder": "Search bikes...",
     "allBrands": "All Brands",
     "filters": "Filters",
-    "resultsCount": "{count} bikes found"
+    "resultsCount": "{count} bikes found",
+    "cairoWhatsapp": "Cairo WhatsApp",
+    "alexWhatsapp": "Alex WhatsApp",
+    "callCairo": "Call Cairo",
+    "callAlex": "Call Alexandria",
+    "new": "New",
+    "electric": "Electric"
   },
   "about": {
     "title": "About Cash Back Moto",
@@ -121,7 +117,11 @@
     "branchCairo": "Cairo Branch",
     "getDirections": "Directions",
     "contactTitle": "Get in Touch",
-    "contactDesc": "Reach out through any of these channels"
+    "contactDesc": "Reach out through any of these channels",
+    "callCairo": "Call Cairo",
+    "callAlex": "Call Alexandria",
+    "whatsappCairo": "WhatsApp Cairo",
+    "whatsappAlex": "WhatsApp Alexandria"
   },
   "contact": {
     "title": "Contact Us",
@@ -149,7 +149,9 @@
     "branchCairo": "Cairo Branch",
     "getDirections": "Directions",
     "quickContact": "Quick Contact",
-    "quickContactDesc": "Prefer to reach us directly? Use these quick contact options."
+    "quickContactDesc": "Prefer to reach us directly? Use these quick contact options.",
+    "cairoBranch": "Cairo Branch",
+    "alexBranch": "Alexandria Branch"
   },
   "footer": {
     "description": "Your trusted destination for motorcycles & scooters in Egypt. Gas and electric — we have it all.",
@@ -158,7 +160,9 @@
     "followUs": "Follow Us",
     "rights": "All rights reserved.",
     "phone": "Phone",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "cairo": "Cairo",
+    "alexandria": "Alexandria"
   },
   "languageSwitcher": {
     "en": "English",

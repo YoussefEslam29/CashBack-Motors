@@ -1,11 +1,12 @@
-import { getProductBySlug, products } from "@/data/products";
-import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
-import ProductDetailClient from "@/components/catalog/ProductDetailClient";
+import { getBikeBySlug } from '@/lib/utils';
+import { bikes } from '@/data/bikes';
+import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
+import ProductDetailClient from '@/components/catalog/ProductDetailClient';
 
 export function generateStaticParams() {
-  return products.map((product) => ({
-    slug: product.slug,
+  return bikes.map((bike) => ({
+    slug: bike.slug,
   }));
 }
 
@@ -17,10 +18,10 @@ export default async function ProductPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const product = getProductBySlug(slug);
-  if (!product) {
+  const bike = getBikeBySlug(bikes, slug);
+  if (!bike) {
     notFound();
   }
 
-  return <ProductDetailClient product={product} />;
+  return <ProductDetailClient bike={bike} />;
 }

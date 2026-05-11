@@ -240,24 +240,32 @@ export function filterBikes(filters: { brand?: Brand; type?: BikeType; fuel?: Fu
 
 ## 6. WhatsApp Link Generator
 
-All WhatsApp links must be generated through one utility — never hardcoded inline.
+All WhatsApp links must be generated through one utility — never hardcoded inline. Each branch has its own number.
 
 ```ts
 // lib/whatsapp.ts
-const WA_NUMBER = '201110782513'; // No + sign
+import { LOCATIONS, BranchKey } from './constants';
 
-export function buildWhatsAppLink(message?: string): string {
-  const base = `https://wa.me/${WA_NUMBER}`;
+export function buildWhatsAppLink(branch: BranchKey, message?: string): string {
+  const number = LOCATIONS[branch].whatsapp;
+  const base = `https://wa.me/${number}`;
   if (!message) return base;
   return `${base}?text=${encodeURIComponent(message)}`;
 }
 
-export function bikeInquiryLink(bikeName: string, locale: 'en' | 'ar'): string {
+export function bikeInquiryLink(bikeName: string, branch: BranchKey, locale: 'en' | 'ar'): string {
   const message = locale === 'ar'
     ? `مرحبا، أنا مهتم بـ ${bikeName}. هل هو متاح؟`
     : `Hello, I'm interested in the ${bikeName}. Is it available?`;
-  return buildWhatsAppLink(message);
+  return buildWhatsAppLink(branch, message);
 }
+```
+
+When showing a "Chat with Us" or "Ask for Price" button, either:
+- Show **two buttons** — one per branch (Cairo / Alexandria), or
+- Default to the branch closest to the user's context if known.
+
+Never use a single hardcoded WhatsApp number.
 ```
 
 ---
@@ -352,29 +360,33 @@ All hardcoded values live here. Never scatter them in components.
 
 ```ts
 // lib/constants.ts
-export const PHONE_NUMBER = '01005804463';
-export const WHATSAPP_NUMBER = '+201110782513';
-
 export const SOCIAL_LINKS = {
   facebook:  'https://www.facebook.com/Cashbackmotoo',
   instagram: 'https://www.instagram.com/cashbackmoto',
   tiktok:    'https://www.tiktok.com/@cashbackmoto',
 } as const;
 
+// Each branch has its own phone — both support calls AND WhatsApp
 export const LOCATIONS = {
-  alexandria: {
-    label: 'Alexandria',
-    labelAr: 'الإسكندرية',
-    mapUrl: 'https://maps.app.goo.gl/omChfM4oFsqhCepE7',
-    embedUrl: '', // TODO: extract embed URL from Google Maps
-  },
   cairo: {
     label: 'Cairo',
     labelAr: 'القاهرة',
+    phone: '01005804463',        // display format
+    whatsapp: '201005804463',    // wa.me format — no + sign
     mapUrl: 'https://maps.app.goo.gl/USLPyWr7Mjdbr9x1A',
-    embedUrl: '', // TODO: extract embed URL from Google Maps
+    embedUrl: '',                // TODO: extract embed URL from Google Maps
+  },
+  alexandria: {
+    label: 'Alexandria',
+    labelAr: 'الإسكندرية',
+    phone: '+20 11 10782513',    // display format
+    whatsapp: '201110782513',    // wa.me format — no + sign
+    mapUrl: 'https://maps.app.goo.gl/omChfM4oFsqhCepE7',
+    embedUrl: '',                // TODO: extract embed URL from Google Maps
   },
 } as const;
+
+export type BranchKey = keyof typeof LOCATIONS;
 
 export const BRANDS = [
   'ZONTOS', 'SYM', 'KEEWAY', 'HOGAN', 'DAYUN', 'BENELLI', 'VIGOREY'

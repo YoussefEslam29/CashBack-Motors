@@ -1,18 +1,33 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../globals.css";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
-import { routing } from "@/i18n/routing";
-import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import type { Metadata } from 'next';
+import { Barlow_Condensed, DM_Sans, Cairo } from 'next/font/google';
+import '../globals.css';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import WhatsAppButton from '@/components/layout/WhatsAppButton';
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+const barlowCondensed = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['700', '800'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const cairo = Cairo({
+  subsets: ['arabic', 'latin'],
+  weight: ['400', '500', '700', '800'],
+  variable: '--font-arabic',
+  display: 'swap',
 });
 
 export function generateStaticParams() {
@@ -20,23 +35,23 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Cash Back Moto — Motorcycles & Scooters in Egypt",
+  title: 'Cash Back Moto — Motorcycles & Scooters in Egypt',
   description:
-    "Premium gas and electric motorcycles & scooters at unbeatable prices. Cash Back Moto — your trusted ride dealer in Egypt.",
+    'Premium gas and electric motorcycles & scooters at unbeatable prices. Cash Back Moto — your trusted ride dealer in Egypt.',
   keywords: [
-    "motorcycles",
-    "scooters",
-    "electric bikes",
-    "Egypt",
-    "Cash Back Moto",
-    "دراجات نارية",
-    "سكوترات",
-    "مصر",
+    'motorcycles',
+    'scooters',
+    'electric bikes',
+    'Egypt',
+    'Cash Back Moto',
+    'دراجات نارية',
+    'سكوترات',
+    'مصر',
   ],
   openGraph: {
-    title: "Cash Back Moto",
-    description: "Premium motorcycles & scooters in Egypt",
-    type: "website",
+    title: 'Cash Back Moto',
+    description: 'Premium motorcycles & scooters in Egypt',
+    type: 'website',
   },
 };
 
@@ -49,30 +64,24 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as "en" | "ar")) {
+  if (!routing.locales.includes(locale as 'en' | 'ar')) {
     notFound();
   }
 
   setRequestLocale(locale);
 
   const messages = await getMessages();
-  const dir = locale === "ar" ? "rtl" : "ltr";
+  const isRTL = locale === 'ar';
 
   return (
-    <html lang={locale} dir={dir} className={inter.variable}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="antialiased">
+    <html
+      lang={locale}
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className={`${barlowCondensed.variable} ${dmSans.variable} ${cairo.variable}`}
+    >
+      <body
+        className={`antialiased ${isRTL ? 'font-arabic' : 'font-body'}`}
+      >
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           <main className="min-h-screen">{children}</main>

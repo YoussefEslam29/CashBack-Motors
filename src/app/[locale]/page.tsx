@@ -1,11 +1,11 @@
-import { setRequestLocale } from "next-intl/server";
-import HeroSection from "@/components/home/HeroSection";
-import CategoryStrip from "@/components/home/CategoryStrip";
-import BrandsStrip from "@/components/home/BrandsStrip";
-import FeaturedRides from "@/components/home/FeaturedRides";
-import WhyUs from "@/components/home/WhyUs";
-import SocialStrip from "@/components/home/SocialStrip";
-import CTASection from "@/components/home/CTASection";
+import { setRequestLocale } from 'next-intl/server';
+import Hero from '@/components/features/home/Hero';
+import FeaturedBikes from '@/components/features/home/FeaturedBikes';
+import BrandStrip from '@/components/features/home/BrandStrip';
+import CategoryStrip from '@/components/home/CategoryStrip';
+import WhyUs from '@/components/home/WhyUs';
+import SocialStrip from '@/components/home/SocialStrip';
+import CTASection from '@/components/home/CTASection';
 
 export default async function HomePage({
   params,
@@ -17,10 +17,10 @@ export default async function HomePage({
 
   return (
     <>
-      <HeroSection />
+      <Hero />
       <CategoryStrip />
-      <BrandsStrip />
-      <FeaturedRides />
+      <BrandStrip />
+      <FeaturedBikes />
       <WhyUs />
       <SocialStrip />
       <CTASection />

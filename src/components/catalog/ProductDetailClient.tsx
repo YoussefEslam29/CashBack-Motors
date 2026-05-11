@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
-import { useTranslations, useLocale } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import Image from "next/image";
-import type { Product } from "@/data/products";
+import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
+import Image from 'next/image';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,71 +10,23 @@ import {
   Phone,
   Zap,
   Fuel,
-  Gauge,
-  Calendar,
-  Tag,
-  Settings,
-  Building2,
-} from "lucide-react";
+} from 'lucide-react';
+import { bikeInquiryLink } from '@/lib/whatsapp';
+import { LOCATIONS } from '@/lib/constants';
+import Badge from '@/components/ui/Badge';
+import type { Bike, Locale } from '@/types';
 
-export default function ProductDetailClient({
-  product,
-}: {
-  product: Product;
-}) {
-  const t = useTranslations("catalog");
-  const locale = useLocale();
-  const isRtl = locale === "ar";
+interface ProductDetailClientProps {
+  bike: Bike;
+}
 
-  const name = isRtl ? product.nameAr : product.name;
-  const description = isRtl ? product.descriptionAr : product.description;
+export default function ProductDetailClient({ bike }: ProductDetailClientProps) {
+  const t = useTranslations('catalog');
+  const locale = useLocale() as Locale;
+  const isRtl = locale === 'ar';
 
-  const specs = [
-    {
-      icon: Building2,
-      label: t("brand"),
-      value: product.brand,
-    },
-    {
-      icon: Settings,
-      label: t("engine"),
-      value: product.specs.engine,
-    },
-    {
-      icon: Zap,
-      label: t("power"),
-      value: product.specs.power,
-    },
-    {
-      icon: Gauge,
-      label: t("topSpeed"),
-      value: product.specs.topSpeed,
-    },
-    {
-      icon: product.fuel === "electric" ? Zap : Fuel,
-      label: t("fuelType"),
-      value: product.fuel === "electric" ? t("fuelElectric") : t("fuelGas"),
-    },
-    {
-      icon: Calendar,
-      label: t("year"),
-      value: product.specs.year.toString(),
-    },
-    {
-      icon: Tag,
-      label: t("category"),
-      value:
-        product.category === "motorcycle"
-          ? t("filterMotorcycle")
-          : t("filterScooter"),
-    },
-  ];
-
-  const whatsappMsg = encodeURIComponent(
-    isRtl
-      ? `مرحبا، أنا مهتم بـ ${product.nameAr} (${product.brand}). هل هي متاحة؟ وكم سعرها؟`
-      : `Hello, I'm interested in the ${product.name} (${product.brand}). Is it available? What's the price?`
-  );
+  const name = isRtl ? bike.nameAr : bike.name;
+  const description = isRtl ? bike.descriptionAr : bike.descriptionEn;
 
   return (
     <div className="pt-24 pb-20">
@@ -90,65 +41,55 @@ export default function ProductDetailClient({
           ) : (
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           )}
-          {t("backToCatalog")}
+          {t('backToCatalog')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Image */}
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border">
+          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border">
             <Image
-              src={product.images[0]}
+              src={bike.images[0]}
               alt={name}
               fill
               className="object-cover"
               priority
             />
-            {/* Fuel badge */}
+            {/* Badges */}
             <div className="absolute top-4 right-4">
-              <span
-                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-bold ${
-                  product.fuel === "electric"
-                    ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                    : "bg-orange-500/20 text-orange-400 border border-orange-500/30"
-                }`}
-              >
-                {product.fuel === "electric" ? (
+              <Badge variant={bike.isElectric ? 'electric' : 'gas'}>
+                {bike.isElectric ? (
                   <Zap className="w-4 h-4" />
                 ) : (
                   <Fuel className="w-4 h-4" />
                 )}
-                {product.fuel === "electric" ? t("fuelElectric") : t("fuelGas")}
-              </span>
+                {bike.isElectric ? t('fuelElectric') : t('fuelGas')}
+              </Badge>
             </div>
-
-            {/* Brand badge */}
             <div className="absolute top-4 left-4">
-              <span className="px-4 py-1.5 rounded-full text-sm font-bold bg-primary/20 text-primary border border-primary/30 backdrop-blur-sm">
-                {product.brand}
-              </span>
+              <Badge variant="primary">{bike.brand}</Badge>
             </div>
           </div>
 
           {/* Details */}
           <div>
-            <h1 className="text-3xl md:text-4xl font-black text-text-primary mb-4">
+            <h1 className="text-3xl md:text-4xl font-black text-text-primary mb-4 font-display uppercase">
               {name}
             </h1>
 
             {/* Ask for Price CTA */}
-            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-xl">
+            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
               <p className="text-2xl font-black text-primary mb-1">
-                {t("askPrice")}
+                {t('askPrice')}
               </p>
               <p className="text-sm text-text-secondary">
-                {t("priceContact")}
+                {t('priceContact')}
               </p>
             </div>
 
             {/* Description */}
             <div className="mb-8">
               <h2 className="text-lg font-bold text-text-primary mb-3">
-                {t("description")}
+                {t('description')}
               </h2>
               <p className="text-text-secondary leading-relaxed">
                 {description}
@@ -158,20 +99,17 @@ export default function ProductDetailClient({
             {/* Specs */}
             <div className="mb-8">
               <h2 className="text-lg font-bold text-text-primary mb-4">
-                {t("specifications")}
+                {t('specifications')}
               </h2>
               <div className="grid grid-cols-2 gap-3">
-                {specs.map((spec) => (
+                {bike.specs.map((spec) => (
                   <div
-                    key={spec.label}
-                    className="glass-card rounded-xl p-4 hover:transform-none"
+                    key={spec.labelEn}
+                    className="bg-bg-surface border border-border rounded-lg p-4"
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <spec.icon className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-text-muted font-medium">
-                        {spec.label}
-                      </span>
-                    </div>
+                    <span className="text-xs text-text-muted font-medium block mb-1">
+                      {isRtl ? spec.labelAr : spec.labelEn}
+                    </span>
                     <p className="text-sm font-bold text-text-primary">
                       {spec.value}
                     </p>
@@ -180,24 +118,44 @@ export default function ProductDetailClient({
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href={`https://wa.me/201110782513?text=${whatsappMsg}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-whatsapp hover:bg-whatsapp/90 rounded-xl text-white font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg shadow-whatsapp/20"
-              >
-                <MessageCircle className="w-5 h-5" />
-                {t("inquire")}
-              </a>
-              <a
-                href="tel:01005804463"
-                className="flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-xl text-text-secondary hover:text-primary font-medium transition-all duration-300"
-              >
-                <Phone className="w-5 h-5" />
-                010 05804463
-              </a>
+            {/* CTAs — Both Branches */}
+            <div className="space-y-3">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={bikeInquiryLink(name, 'cairo', locale)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  {t('cairoWhatsapp')}
+                </a>
+                <a
+                  href={bikeInquiryLink(name, 'alexandria', locale)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  {t('alexWhatsapp')}
+                </a>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={`tel:${LOCATIONS.cairo.phone}`}
+                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-medium transition-all duration-300"
+                >
+                  <Phone className="w-5 h-5" />
+                  {t('callCairo')} — {LOCATIONS.cairo.phone}
+                </a>
+                <a
+                  href={`tel:${LOCATIONS.alexandria.phone}`}
+                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-medium transition-all duration-300"
+                >
+                  <Phone className="w-5 h-5" />
+                  {t('callAlex')} — {LOCATIONS.alexandria.phone}
+                </a>
+              </div>
             </div>
           </div>
         </div>

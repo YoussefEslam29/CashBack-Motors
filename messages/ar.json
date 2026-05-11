@@ -6,8 +6,8 @@
     "contact": "تواصل معنا"
   },
   "hero": {
-    "tagline": "اركب المستقبل",
-    "subtitle": "دراجات نارية وسكوترات — بنزين وكهرباء — بأسعار ترجعلك فلوسك.",
+    "tagline": "اختار دراجتك",
+    "subtitle": "سكوتر أو موتوسيكل، بنزين أو كهربا — عندنا كل حاجة",
     "cta": "تصفح الدراجات",
     "ctaContact": "تواصل معنا"
   },
@@ -22,15 +22,15 @@
     "subtitle": "بنوفر أفضل الماركات في السوق"
   },
   "featured": {
+    "eyebrow": "أسطولنا",
     "title": "دراجات مميزة",
     "subtitle": "مختارة من أحدث ما وصلنا",
     "viewAll": "عرض كل الدراجات",
     "askPrice": "اسأل عن السعر",
     "inquire": "استفسر عبر واتساب",
     "specs": "المواصفات",
-    "engine": "المحرك",
-    "power": "القوة",
-    "topSpeed": "السرعة القصوى"
+    "cairoWhatsapp": "واتساب القاهرة",
+    "alexWhatsapp": "واتساب الإسكندرية"
   },
   "whyUs": {
     "title": "ليه كاش باك موتو؟",
@@ -60,7 +60,9 @@
     "title": "جاهز تركب؟",
     "subtitle": "تواصل معنا النهارده ولاقي دراجتك المثالية. إحنا على بعد رسالة.",
     "whatsapp": "تواصل عبر واتساب",
-    "call": "اتصل بينا"
+    "call": "اتصل بينا",
+    "cairo": "فرع القاهرة",
+    "alexandria": "فرع الإسكندرية"
   },
   "catalog": {
     "title": "معرضنا",
@@ -68,13 +70,9 @@
     "filterAll": "الكل",
     "filterMotorcycle": "دراجات نارية",
     "filterScooter": "سكوترات",
-    "filterElectric": "كهربائية",
+    "filterElectric": "كهربائية فقط",
     "fuelGas": "بنزين",
     "fuelElectric": "كهرباء",
-    "sortDefault": "الافتراضي",
-    "sortPriceLow": "السعر: من الأقل للأعلى",
-    "sortPriceHigh": "السعر: من الأعلى للأقل",
-    "sortName": "الاسم: أ-ي",
     "noResults": "لا توجد دراجات تطابق البحث.",
     "resetFilters": "إعادة ضبط الفلاتر",
     "inquire": "استفسر عبر واتساب",
@@ -83,20 +81,18 @@
     "priceContact": "تواصل معنا عبر واتساب أو اتصل بينا لمعرفة السعر",
     "backToCatalog": "العودة للمعرض",
     "specifications": "المواصفات",
-    "engine": "المحرك",
-    "power": "القوة",
-    "topSpeed": "السرعة القصوى",
-    "fuelType": "نوع الوقود",
-    "year": "سنة الصنع",
-    "category": "التصنيف",
-    "brand": "الماركة",
     "description": "الوصف",
     "gallery": "الصور",
-    "interestedMessage": "مرحبا، أنا مهتم بـ {bike}. هل هي متاحة؟ وكم سعرها؟",
     "searchPlaceholder": "ابحث عن دراجات...",
     "allBrands": "كل الماركات",
     "filters": "الفلاتر",
-    "resultsCount": "{count} دراجة"
+    "resultsCount": "{count} دراجة",
+    "cairoWhatsapp": "واتساب القاهرة",
+    "alexWhatsapp": "واتساب الإسكندرية",
+    "callCairo": "اتصل بالقاهرة",
+    "callAlex": "اتصل بالإسكندرية",
+    "new": "جديد",
+    "electric": "كهربائي"
   },
   "about": {
     "title": "عن كاش باك موتو",
@@ -121,7 +117,11 @@
     "branchCairo": "فرع القاهرة",
     "getDirections": "اتجاهات",
     "contactTitle": "تواصل معنا",
-    "contactDesc": "تقدر توصلنا من أي قناة من دول"
+    "contactDesc": "تقدر توصلنا من أي قناة من دول",
+    "callCairo": "اتصل بالقاهرة",
+    "callAlex": "اتصل بالإسكندرية",
+    "whatsappCairo": "واتساب القاهرة",
+    "whatsappAlex": "واتساب الإسكندرية"
   },
   "contact": {
     "title": "تواصل معنا",
@@ -149,7 +149,9 @@
     "branchCairo": "فرع القاهرة",
     "getDirections": "اتجاهات",
     "quickContact": "تواصل سريع",
-    "quickContactDesc": "عايز توصلنا مباشرة؟ استخدم الطرق دي."
+    "quickContactDesc": "عايز توصلنا مباشرة؟ استخدم الطرق دي.",
+    "cairoBranch": "فرع القاهرة",
+    "alexBranch": "فرع الإسكندرية"
   },
   "footer": {
     "description": "وجهتك الموثوقة للدراجات النارية والسكوترات في مصر. بنزين وكهرباء — عندنا كل حاجة.",
@@ -158,7 +160,9 @@
     "followUs": "تابعنا",
     "rights": "جميع الحقوق محفوظة.",
     "phone": "الهاتف",
-    "whatsapp": "واتساب"
+    "whatsapp": "واتساب",
+    "cairo": "القاهرة",
+    "alexandria": "الإسكندرية"
   },
   "languageSwitcher": {
     "en": "English",

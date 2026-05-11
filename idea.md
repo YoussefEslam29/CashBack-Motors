@@ -99,9 +99,12 @@ A bilingual (Arabic / English) motorcycle & scooter showcase website for **Cash 
 | Facebook | https://www.facebook.com/Cashbackmotoo |
 | Instagram | https://www.instagram.com/cashbackmoto |
 | TikTok | https://www.tiktok.com/@cashbackmoto |
-| Phone | 010 05804463 |
-| WhatsApp | +20 11 10782513 |
-| Location | TBD |
+| Cairo Phone & WhatsApp | 010 05804463 |
+| Alexandria Phone & WhatsApp | +20 11 10782513 |
+| Location (Cairo) | https://maps.app.goo.gl/USLPyWr7Mjdbr9x1A |
+| Location (Alexandria) | https://maps.app.goo.gl/omChfM4oFsqhCepE7 |
+
+> Both numbers support calls **and** WhatsApp. Each branch has its own dedicated number.
 
 ---
 
