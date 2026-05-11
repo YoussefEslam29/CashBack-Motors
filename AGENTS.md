@@ -180,7 +180,7 @@ LOCATIONS = {
     labelAr: 'الإسكندرية',
     phone: '+20 11 10782513',       // display format
     whatsapp: '201110782513',       // wa.me format — no + sign
-    mapUrl: 'https://maps.app.goo.gl/omChfM4oFsqhCepE7',
+    mapUrl: 'https://maps.app.goo.gl/nHStDGwekLnKUJAK7',
   },
 }
 ```

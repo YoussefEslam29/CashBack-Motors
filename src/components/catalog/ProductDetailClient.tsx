@@ -48,10 +48,11 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
           {/* Image */}
           <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border">
             <Image
-              src={bike.images[0]}
+              src={bike.images[0] ?? '/images/placeholder.jpg'}
               alt={name}
-              fill
-              className="object-cover"
+              width={800}
+              height={600}
+              className="w-full h-full object-cover"
               priority
             />
             {/* Badges */}

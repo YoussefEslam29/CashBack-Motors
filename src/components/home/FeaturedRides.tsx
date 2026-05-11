@@ -39,10 +39,11 @@ export default function FeaturedRides() {
               {/* Image */}
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src={product.images[0]}
+                  src={product.images[0] ?? '/images/placeholder.jpg'}
                   alt={locale === "ar" ? product.nameAr : product.name}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  width={560}
+                  height={420}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
 

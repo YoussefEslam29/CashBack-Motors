@@ -26,10 +26,11 @@ export default function BikeCard({ bike }: BikeCardProps) {
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden bg-bg-elevated">
         <Image
-          src={bike.images[0]}
+          src={bike.images[0] ?? '/images/placeholder.jpg'}
           alt={name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          width={560}
+          height={420}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent" />
 

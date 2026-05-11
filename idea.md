@@ -102,7 +102,7 @@ A bilingual (Arabic / English) motorcycle & scooter showcase website for **Cash 
 | Cairo Phone & WhatsApp | 010 05804463 |
 | Alexandria Phone & WhatsApp | +20 11 10782513 |
 | Location (Cairo) | https://maps.app.goo.gl/USLPyWr7Mjdbr9x1A |
-| Location (Alexandria) | https://maps.app.goo.gl/omChfM4oFsqhCepE7 |
+| Location (Alexandria) | https://maps.app.goo.gl/nHStDGwekLnKUJAK7 |
 
 > Both numbers support calls **and** WhatsApp. Each branch has its own dedicated number.
 
@@ -177,7 +177,7 @@ The shop has **two branches**:
 
 | Branch | Google Maps |
 |---|---|
-| Alexandria | https://maps.app.goo.gl/omChfM4oFsqhCepE7 |
+| Alexandria | https://maps.app.goo.gl/nHStDGwekLnKUJAK7 |
 | Cairo | https://maps.app.goo.gl/USLPyWr7Mjdbr9x1A |
 
 Both locations will be embedded as Google Maps iframes on the Contact page and About page, side by side on desktop, stacked on mobile.

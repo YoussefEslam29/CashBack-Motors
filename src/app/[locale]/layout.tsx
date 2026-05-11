@@ -78,6 +78,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={isRTL ? 'rtl' : 'ltr'}
       className={`${barlowCondensed.variable} ${dmSans.variable} ${cairo.variable}`}
+      suppressHydrationWarning
     >
       <body
         className={`antialiased ${isRTL ? 'font-arabic' : 'font-body'}`}
