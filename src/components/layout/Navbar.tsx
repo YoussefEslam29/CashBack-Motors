@@ -32,11 +32,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled
           ? 'bg-bg-dark/95 backdrop-blur-xl border-b border-border shadow-lg shadow-black/20'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -64,11 +63,10 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
-                    isActive
+                  className={`relative px-4 py-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 ${isActive
                       ? 'text-primary'
                       : 'text-text-secondary hover:text-text-primary'
-                  }`}
+                    }`}
                 >
                   {link.label}
                   {isActive && (
@@ -106,9 +104,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="bg-bg-dark/98 backdrop-blur-xl border-t border-border px-4 py-4 space-y-1">
           {navLinks.map((link) => {
@@ -118,11 +115,10 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                  isActive
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${isActive
                     ? 'text-primary bg-primary/10'
                     : 'text-text-secondary hover:text-text-primary hover:bg-bg-elevated'
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
