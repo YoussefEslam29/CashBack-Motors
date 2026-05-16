@@ -18,9 +18,9 @@ export default function BrandStrip() {
       </div>
 
       {/* Marquee Wrapper */}
-      <div className="relative flex w-full overflow-hidden bg-bg-surface/50 py-10 border-y border-border">
+      <div className="relative flex w-full overflow-hidden bg-zinc-950/80 backdrop-blur-md py-10 border-y border-zinc-900">
         {/* Left Fade */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-bg-dark to-transparent md:w-32" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-zinc-950 to-transparent md:w-32" />
 
         <motion.div
           className="flex whitespace-nowrap gap-8"
@@ -34,7 +34,7 @@ export default function BrandStrip() {
           {marqueeBrands.map((brand, idx) => (
             <div
               key={`${brand}-${idx}`}
-              className="flex-shrink-0 w-48 bg-bg-surface border border-border rounded-lg p-6 text-center hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.15)] transition-all duration-300 mx-4"
+              className="flex-shrink-0 w-48 bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-lg p-6 text-center hover:bg-zinc-800/50 hover:border-zinc-700 transition-all duration-300 mx-4 shadow-lg shadow-black/50"
             >
               <p className="text-xl font-bold text-primary uppercase tracking-wider">
                 {brand}
@@ -44,7 +44,7 @@ export default function BrandStrip() {
         </motion.div>
 
         {/* Right Fade */}
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-bg-dark to-transparent md:w-32" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-zinc-950 to-transparent md:w-32" />
       </div>
     </section>
   );

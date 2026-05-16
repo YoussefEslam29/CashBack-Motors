@@ -12,11 +12,12 @@ A bilingual (Arabic / English) motorcycle \& scooter showcase website for **Cash
 
 |Property|Value|
 |-|-|
-|Primary color|Red `#CC0000`|
-|Background|Near-black `#0A0A0A`|
-|Accent|White `#FFFFFF`|
-|Vibe|Dark, aggressive, fast — inspired by the logo|
-|Logo|Red sport-bike silhouette on black|
+|Primary color|Red `#CC0000` (strictly for primary action buttons, active link underlines, and small badges)|
+|Background|Deepest backgrounds use zinc-950. Cards/Containers use zinc-900 with 40% opacity and backdrop-blur (glassmorphism)|
+|Text|Headers are crisp white (zinc-50). No text shadows or glows.|
+|Vibe|Premium Cyber-Industrial dark mode|
+|Logo|Sharp, geometric typographic emblem (Abstract C/M), favoring a premium metallic/3D aesthetic over flat silhouettes|
+|Floating CTAs|Sleek, dark frosted-glass pills with a subtle brand-colored or green icon, relying on hover states for expansion|
 |Font direction|LTR (English) + RTL (Arabic)|
 
 \---
@@ -37,7 +38,7 @@ A bilingual (Arabic / English) motorcycle \& scooter showcase website for **Cash
 * Quick category strip: Motorcycles | Scooters | Electric
 * Featured / new arrivals (3–6 cards)
 * "Why Cash Back Moto?" trust section (short, punchy)
-* WhatsApp floating button (sticky, always visible)
+* WhatsApp floating button (sleek, dark frosted-glass pill, expands on hover)
 * Social media links strip
 
 ### 4.2 Catalog `/catalog`

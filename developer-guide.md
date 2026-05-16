@@ -20,7 +20,17 @@
 
 ---
 
-## 2. Folder Architecture
+## 2. Brand Identity & UI Layout
+
+We use a **Premium Cyber-Industrial** design system:
+- **Colors:** Deepest backgrounds use `zinc-950`. Cards/Containers use `zinc-900` with 40% opacity and backdrop-blur (glassmorphism).
+- **Typography:** No text shadows or glows. Headers are crisp white (`zinc-50`). Red (`#CC0000`) is strictly reserved for primary action buttons, active link underlines, and small badges.
+- **Logo:** Sharp, geometric typographic emblem (Abstract C/M), favoring a premium metallic/3D aesthetic over flat silhouettes.
+- **Floating CTAs:** The WhatsApp branch buttons are sleek, dark frosted-glass pills with a subtle brand-colored or green icon, relying on hover states for expansion (no solid bright green).
+
+---
+
+## 3. Folder Architecture
 
 ```
 cashback-moto/

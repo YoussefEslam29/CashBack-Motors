@@ -17,10 +17,12 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`WhatsApp - ${t('cairo')}`}
-        className="flex items-center gap-2 px-4 py-3 rounded-full bg-[#25D366] text-white font-semibold text-sm shadow-[0_4px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_4px_32px_rgba(37,211,102,0.6)] hover:scale-105 transition-all duration-200"
+        className="group flex items-center p-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800 text-zinc-50 font-semibold text-sm shadow-lg hover:bg-zinc-800/60 hover:border-zinc-700 transition-all duration-300"
       >
-        <MessageCircle className="w-5 h-5" />
-        <span className="hidden sm:inline">{t('cairo')}</span>
+        <MessageCircle className="w-5 h-5 text-[#25D366]" />
+        <span className="max-w-0 opacity-0 overflow-hidden group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 whitespace-nowrap">
+          {t('cairo')}
+        </span>
       </a>
       {/* Alexandria button */}
       <a
@@ -28,10 +30,12 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`WhatsApp - ${t('alexandria')}`}
-        className="flex items-center gap-2 px-4 py-3 rounded-full bg-[#25D366] text-white font-semibold text-sm shadow-[0_4px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_4px_32px_rgba(37,211,102,0.6)] hover:scale-105 transition-all duration-200"
+        className="group flex items-center p-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800 text-zinc-50 font-semibold text-sm shadow-lg hover:bg-zinc-800/60 hover:border-zinc-700 transition-all duration-300"
       >
-        <MessageCircle className="w-5 h-5" />
-        <span className="hidden sm:inline">{t('alexandria')}</span>
+        <MessageCircle className="w-5 h-5 text-[#25D366]" />
+        <span className="max-w-0 opacity-0 overflow-hidden group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 whitespace-nowrap">
+          {t('alexandria')}
+        </span>
       </a>
     </div>
   );

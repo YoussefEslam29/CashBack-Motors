@@ -69,7 +69,7 @@ export default function FeaturedBikes() {
               <motion.div
                 variants={itemVariants}
                 key={bike.id}
-                className="bg-bg-surface border border-border rounded-lg overflow-hidden hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.2)] transition-all duration-300 group"
+                className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-lg overflow-hidden hover:border-zinc-600 hover:shadow-lg hover:bg-zinc-800/50 transition-all duration-300 group"
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-bg-elevated">
@@ -97,7 +97,7 @@ export default function FeaturedBikes() {
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-primary-hover transition-colors">
                     {name}
                   </h3>
 

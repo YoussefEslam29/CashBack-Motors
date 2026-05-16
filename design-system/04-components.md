@@ -28,15 +28,16 @@ Reference implementations for the core UI components. All components must respec
   target="_blank"
   className="
     flex items-center gap-2
-    bg-[#25D366] hover:bg-[#1ebe5d]
-    text-white font-semibold
+    bg-zinc-900/40 backdrop-blur-md border border-zinc-800
+    hover:bg-zinc-800/60 hover:border-zinc-700
+    text-zinc-50 font-semibold
     px-6 py-3 rounded-full
-    transition-all duration-200
+    transition-all duration-300
     shadow-lg
   "
 >
-  <WhatsAppIcon />
-  WhatsApp Us
+  <WhatsAppIcon className="text-[#25D366]" />
+  <span className="opacity-0 w-0 group-hover:opacity-100 group-hover:w-auto transition-all overflow-hidden whitespace-nowrap">WhatsApp Us</span>
 </a>
 ```
 
@@ -64,9 +65,9 @@ Reference implementations for the core UI components. All components must respec
 
 ```tsx
 <div className="
-  bg-bg-surface border border-border
+  bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50
   rounded-lg overflow-hidden
-  hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.2)]
+  hover:border-zinc-600 hover:shadow-lg hover:bg-zinc-800/50
   transition-all duration-300
   group
 ">

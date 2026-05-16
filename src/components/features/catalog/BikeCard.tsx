@@ -18,7 +18,7 @@ export default function BikeCard({ bike }: BikeCardProps) {
   const name = isArabic ? bike.name.ar : bike.name.en;
 
   return (
-    <div className="bg-bg-surface border border-border rounded-lg overflow-hidden hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.2)] transition-all duration-300 group">
+    <div className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-lg overflow-hidden hover:border-zinc-600 hover:shadow-lg hover:bg-zinc-800/50 transition-all duration-300 group">
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden bg-bg-elevated">
         <Image
@@ -48,7 +48,7 @@ export default function BikeCard({ bike }: BikeCardProps) {
         <p className="text-text-secondary text-sm uppercase tracking-widest mb-1">
           {bike.make}
         </p>
-        <h3 className="text-white font-bold text-xl mb-2 leading-tight group-hover:text-primary transition-colors">
+        <h3 className="text-primary font-bold text-xl mb-2 leading-tight group-hover:text-primary-hover transition-colors">
           {name}
         </h3>
 

@@ -9,25 +9,24 @@ The palette is built around the logo: **near-black backgrounds, crimson red as t
 ```css
 :root {
   /* Backgrounds */
-  --color-bg-base:       #0A0A0A;   /* Page background — deepest black */
-  --color-bg-surface:    #111111;   /* Cards, panels */
-  --color-bg-elevated:   #1A1A1A;   /* Modals, dropdowns, hover states */
-  --color-bg-subtle:     #222222;   /* Dividers, skeleton loaders */
+  --color-bg-base:       #09090b;   /* Page background — deepest black zinc-950 */
+  --color-bg-surface:    rgba(24, 24, 27, 0.4); /* Cards, panels — zinc-900 at 40% with backdrop-blur */
+  --color-bg-elevated:   #18181b;   /* Modals, dropdowns, hover states (zinc-900) */
+  --color-bg-subtle:     #27272a;   /* Dividers, skeleton loaders (zinc-800) */
 
   /* Primary — Red */
-  --color-primary:       #CC0000;   /* Main CTA, logo red */
+  --color-primary:       #CC0000;   /* Strictly for primary action buttons, active link underlines, small badges */
   --color-primary-hover: #E60000;   /* Hover / focus */
   --color-primary-muted: #7A0000;   /* Disabled, ghost states */
-  --color-primary-glow:  rgba(204, 0, 0, 0.25); /* Box-shadow / glow effect */
 
   /* Text */
-  --color-text-primary:  #FFFFFF;   /* Headings, main body */
-  --color-text-secondary:#A0A0A0;   /* Subtitles, meta, labels */
-  --color-text-disabled: #4A4A4A;   /* Disabled inputs, inactive states */
-  --color-text-inverse:  #0A0A0A;   /* Text on red backgrounds */
+  --color-text-primary:  #fafafa;   /* Headings, main body (zinc-50) */
+  --color-text-secondary:#a1a1aa;   /* Subtitles, meta, labels (zinc-400) */
+  --color-text-disabled: #52525b;   /* Disabled inputs, inactive states (zinc-600) */
+  --color-text-inverse:  #09090b;   /* Text on red backgrounds */
 
   /* Accent */
-  --color-accent-white:  #FFFFFF;
+  --color-accent-white:  #fafafa;
   --color-accent-red:    #FF1A1A;   /* Badges, highlights — brighter than primary */
 
   /* Semantic */
@@ -45,11 +44,11 @@ The palette is built around the logo: **near-black backgrounds, crimson red as t
 
 ## Usage Rules
 
-- **Backgrounds** — always use `--color-bg-*` tokens, never raw hex. This keeps dark mode consistent.
-- **Red is for action** — only use `--color-primary` on interactive elements (buttons, links, active states, badges). Don't splash it decoratively everywhere or it loses impact.
-- **White on black** — the default text pairing. Never use off-white (`#F5F5F5`) on dark backgrounds; it looks murky. Use pure `#FFFFFF`.
-- **Glow sparingly** — `--color-primary-glow` on box-shadow for hero CTAs and featured cards only. Overuse kills the effect.
-- **No gradients from red to another hue** — if you gradient, do `#CC0000` → `#880000` (dark red), not red to orange or red to purple.
+- **Backgrounds** — always use `--color-bg-*` tokens. Cards and containers use glassmorphism (opacity + blur).
+- **Red is for action** — only use `--color-primary` on interactive elements (buttons, link underlines, active states, badges). Don't splash it decoratively everywhere or use it for text gradients.
+- **Crisp white text** — use pure `zinc-50` (`#fafafa`) for text on dark backgrounds. No text shadows or glows.
+- **No text glow** — text shadows and glows are strictly forbidden. Use clean, depth-focused design instead.
+- **Floating CTAs** — WhatsApp branch buttons use dark frosted-glass pills with subtle brand icons. No solid bright green.
 
 ---
 

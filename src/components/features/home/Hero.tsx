@@ -85,8 +85,8 @@ export default function Hero() {
         </motion.div>
 
         {/* Main tagline */}
-        <motion.h1 variants={itemVariants} className="text-hero font-black mb-6 font-display uppercase">
-          <span className="gradient-text">{t('tagline')}</span>
+        <motion.h1 variants={itemVariants} className="text-hero font-black mb-6 font-display uppercase text-primary">
+          <span>{t('tagline')}</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -98,14 +98,14 @@ export default function Hero() {
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/catalog"
-            className="group relative px-8 py-4 bg-primary hover:bg-primary-hover rounded-md text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_24px_rgba(204,0,0,0.4)] active:scale-95 overflow-hidden"
+            className="group relative px-8 py-4 bg-[#CC0000] hover:bg-red-700 rounded-md text-zinc-50 font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
           >
             <span className="relative z-10">{t('cta')}</span>
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer" />
           </Link>
           <Link
             href="/contact"
-            className="px-8 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-text-primary font-medium text-lg transition-all duration-300"
+            className="px-8 py-4 bg-zinc-900/40 backdrop-blur-md border border-zinc-800 hover:border-zinc-600 rounded-md text-zinc-300 hover:text-zinc-50 font-medium text-lg transition-all duration-300 shadow-lg shadow-black/20"
           >
             {t('ctaContact')}
           </Link>
