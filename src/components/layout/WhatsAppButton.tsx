@@ -10,7 +10,7 @@ export default function WhatsAppButton() {
   const locale = useLocale() as Locale;
 
   return (
-    <div className="fixed bottom-6 right-6 z-[500] flex flex-col items-end gap-2">
+    <div className="fixed bottom-6 left-6 z-[500] flex flex-col items-start gap-2">
       {/* Cairo button */}
       <a
         href={generalInquiryLink('cairo', locale)}

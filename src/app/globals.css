@@ -240,6 +240,37 @@ body {
   box-shadow: 0 0 40px rgba(37, 211, 102, 0.6);
 }
 
+/* Chat widget */
+.chat-btn-glow {
+  animation: chat-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes chat-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(204, 0, 0, 0.7);
+  }
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);

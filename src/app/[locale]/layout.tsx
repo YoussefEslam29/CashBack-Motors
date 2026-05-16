@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
+import ChatWidget from '@/components/features/chat/ChatWidget';
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
@@ -88,6 +89,7 @@ export default async function LocaleLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
           <WhatsAppButton />
+          <ChatWidget />
         </NextIntlClientProvider>
       </body>
     </html>
