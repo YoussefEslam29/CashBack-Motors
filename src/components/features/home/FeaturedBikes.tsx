@@ -9,6 +9,7 @@ import { bikeInquiryLink } from '@/lib/whatsapp';
 import { getFeaturedBikes } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { motion } from 'framer-motion';
 import type { Locale } from '@/types';
 
 export default function FeaturedBikes() {
@@ -16,24 +17,57 @@ export default function FeaturedBikes() {
   const isArabic = locale === 'ar';
   const featured = getFeaturedBikes(bikes);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: 'spring', stiffness: 50, damping: 15 }
+    },
+  };
+
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow={isArabic ? 'مختارات' : 'Our Selection'}
-          title={isArabic ? 'موديلات مميزة' : 'Featured Models'}
-          subtitle={isArabic ? 'اكتشف أبرز موتوسيكلات وسكوترات متاحة عندنا' : 'Discover the top motorcycles and scooters available at our showroom'}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionHeading
+            eyebrow={isArabic ? 'مختارات' : 'Our Selection'}
+            title={isArabic ? 'موديلات مميزة' : 'Featured Models'}
+            subtitle={isArabic ? 'اكتشف أبرز موتوسيكلات وسكوترات متاحة عندنا' : 'Discover the top motorcycles and scooters available at our showroom'}
+          />
+        </motion.div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {featured.map((bike) => {
             const name = isArabic ? bike.name.ar : bike.name.en;
 
             return (
-              <div
+              <motion.div
+                variants={itemVariants}
                 key={bike.id}
                 className="bg-bg-surface border border-border rounded-lg overflow-hidden hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.2)] transition-all duration-300 group"
               >
@@ -93,10 +127,10 @@ export default function FeaturedBikes() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* View All */}
         <div className="text-center mt-12">

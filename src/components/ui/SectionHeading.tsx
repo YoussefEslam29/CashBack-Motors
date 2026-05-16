@@ -23,11 +23,11 @@ export default function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2 className="text-white font-display text-4xl md:text-5xl font-bold uppercase">
+      <h2 className="text-white font-display text-h2 font-bold uppercase">
         <span className="gradient-text">{title}</span>
       </h2>
       {subtitle && (
-        <p className="text-text-secondary mt-4 max-w-xl mx-auto">
+        <p className="text-text-secondary text-body mt-4 max-w-xl mx-auto">
           {subtitle}
         </p>
       )}

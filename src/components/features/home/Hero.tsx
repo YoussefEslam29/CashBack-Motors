@@ -4,14 +4,41 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   const t = useTranslations('hero');
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: 'spring', stiffness: 50, damping: 15 }
+    },
+  };
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0" suppressHydrationWarning>
+      {/* Background Image with Parallax effect */}
+      <motion.div 
+        className="absolute inset-0"
+        initial={{ scale: 1.05 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: 'easeOut' }}
+        suppressHydrationWarning
+      >
         <Image
           src="/hero-bg.jpg"
           alt="Cash Back Moto"
@@ -21,39 +48,60 @@ export default function Hero() {
           quality={90}
         />
         <div className="hero-gradient absolute inset-0" />
-      </div>
+      </motion.div>
 
       {/* Animated red accent lines */}
-      <div className="absolute top-1/4 left-0 w-40 h-px bg-gradient-to-r from-primary/50 to-transparent animate-slide-left" />
-      <div className="absolute top-1/3 right-0 w-60 h-px bg-gradient-to-l from-primary/30 to-transparent animate-slide-right" />
-      <div className="absolute bottom-1/3 left-0 w-32 h-px bg-gradient-to-r from-primary/40 to-transparent animate-slide-left animation-delay-400" />
+      <motion.div 
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute top-1/4 left-0 w-40 h-px bg-gradient-to-r from-primary/50 to-transparent origin-left" 
+      />
+      <motion.div 
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.7 }}
+        className="absolute top-1/3 right-0 w-60 h-px bg-gradient-to-l from-primary/30 to-transparent origin-right" 
+      />
+      <motion.div 
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.9 }}
+        className="absolute bottom-1/3 left-0 w-32 h-px bg-gradient-to-r from-primary/40 to-transparent origin-left" 
+      />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 text-center px-4 max-w-4xl mx-auto"
+      >
         {/* Logo text */}
-        <div className="mb-6 animate-fade-in">
-          <span className="text-sm md:text-base font-bold tracking-[0.4em] text-primary uppercase">
+        <motion.div variants={itemVariants} className="mb-6">
+          <span className="text-sm font-bold tracking-[0.4em] text-primary uppercase">
             Cash Back Moto
           </span>
-        </div>
+        </motion.div>
 
         {/* Main tagline */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 animate-fade-in animation-delay-200 font-display uppercase">
+        <motion.h1 variants={itemVariants} className="text-hero font-black mb-6 font-display uppercase">
           <span className="gradient-text">{t('tagline')}</span>
-        </h1>
+        </motion.h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 animate-fade-in animation-delay-400 leading-relaxed">
+        <motion.p variants={itemVariants} className="text-body-lg text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
           {t('subtitle')}
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in animation-delay-600">
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/catalog"
-            className="group relative px-8 py-4 bg-primary hover:bg-primary-hover rounded-md text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_24px_rgba(204,0,0,0.4)] active:scale-95"
+            className="group relative px-8 py-4 bg-primary hover:bg-primary-hover rounded-md text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_24px_rgba(204,0,0,0.4)] active:scale-95 overflow-hidden"
           >
-            {t('cta')}
+            <span className="relative z-10">{t('cta')}</span>
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer" />
           </Link>
           <Link
             href="/contact"
@@ -61,16 +109,21 @@ export default function Hero() {
           >
             {t('ctaContact')}
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float"
+      >
         <ChevronDown className="w-6 h-6 text-text-muted" />
-      </div>
+      </motion.div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg-dark to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg-dark to-transparent pointer-events-none" />
     </section>
   );
 }

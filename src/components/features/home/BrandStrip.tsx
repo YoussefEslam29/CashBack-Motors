@@ -3,26 +3,48 @@
 import { useTranslations } from 'next-intl';
 import { BRANDS } from '@/lib/constants';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { motion } from 'framer-motion';
 
 export default function BrandStrip() {
   const t = useTranslations('brands');
 
+  // Double the brands array so the marquee loop appears seamless
+  const marqueeBrands = [...BRANDS, ...BRANDS, ...BRANDS];
+
   return (
-    <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <SectionHeading title={t('title')} subtitle={t('subtitle')} />
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
-          {BRANDS.map((brand) => (
+      </div>
+
+      {/* Marquee Wrapper */}
+      <div className="relative flex w-full overflow-hidden bg-bg-surface/50 py-10 border-y border-border">
+        {/* Left Fade */}
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-bg-dark to-transparent md:w-32" />
+
+        <motion.div
+          className="flex whitespace-nowrap gap-8"
+          animate={{ x: [0, -1035] }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: 20,
+          }}
+        >
+          {marqueeBrands.map((brand, idx) => (
             <div
-              key={brand}
-              className="bg-bg-surface border border-border rounded-lg p-4 text-center hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.15)] transition-all duration-300"
+              key={`${brand}-${idx}`}
+              className="flex-shrink-0 w-48 bg-bg-surface border border-border rounded-lg p-6 text-center hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.15)] transition-all duration-300 mx-4"
             >
-              <p className="text-sm font-bold text-primary uppercase tracking-wider">
+              <p className="text-xl font-bold text-primary uppercase tracking-wider">
                 {brand}
               </p>
             </div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Right Fade */}
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-bg-dark to-transparent md:w-32" />
       </div>
     </section>
   );

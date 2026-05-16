@@ -64,7 +64,7 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
 
           {/* Details */}
           <div>
-            <h1 className="text-3xl md:text-4xl font-black text-text-primary mb-2 font-display uppercase">
+            <h1 className="text-h1 font-black text-text-primary mb-2 font-display uppercase">
               {name}
             </h1>
 
