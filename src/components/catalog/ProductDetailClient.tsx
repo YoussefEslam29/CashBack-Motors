@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import {
@@ -8,8 +8,6 @@ import {
   ArrowRight,
   MessageCircle,
   Phone,
-  Zap,
-  Fuel,
 } from 'lucide-react';
 import { bikeInquiryLink } from '@/lib/whatsapp';
 import { LOCATIONS } from '@/lib/constants';
@@ -21,12 +19,10 @@ interface ProductDetailClientProps {
 }
 
 export default function ProductDetailClient({ bike }: ProductDetailClientProps) {
-  const t = useTranslations('catalog');
   const locale = useLocale() as Locale;
   const isRtl = locale === 'ar';
 
-  const name = isRtl ? bike.nameAr : bike.name;
-  const description = isRtl ? bike.descriptionAr : bike.descriptionEn;
+  const name = isRtl ? bike.name.ar : bike.name.en;
 
   return (
     <div className="pt-24 pb-20">
@@ -41,7 +37,7 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
           ) : (
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           )}
-          {t('backToCatalog')}
+          {isRtl ? 'العودة للكتالوج' : 'Back to Catalog'}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -55,68 +51,37 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
               className="w-full h-full object-cover"
               priority
             />
-            {/* Badges */}
+            {/* Type badge */}
             <div className="absolute top-4 right-4">
-              <Badge variant={bike.isElectric ? 'electric' : 'gas'}>
-                {bike.isElectric ? (
-                  <Zap className="w-4 h-4" />
-                ) : (
-                  <Fuel className="w-4 h-4" />
-                )}
-                {bike.isElectric ? t('fuelElectric') : t('fuelGas')}
+              <Badge variant="primary">
+                {bike.type === 'scooter' ? (isRtl ? 'سكوتر' : 'Scooter') : (isRtl ? 'موتوسيكل' : 'Motorcycle')}
               </Badge>
             </div>
             <div className="absolute top-4 left-4">
-              <Badge variant="primary">{bike.brand}</Badge>
+              <Badge variant="primary">{bike.make}</Badge>
             </div>
           </div>
 
           {/* Details */}
           <div>
-            <h1 className="text-3xl md:text-4xl font-black text-text-primary mb-4 font-display uppercase">
+            <h1 className="text-3xl md:text-4xl font-black text-text-primary mb-2 font-display uppercase">
               {name}
             </h1>
 
-            {/* Ask for Price CTA */}
-            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
-              <p className="text-2xl font-black text-primary mb-1">
-                {t('askPrice')}
-              </p>
-              <p className="text-sm text-text-secondary">
-                {t('priceContact')}
-              </p>
-            </div>
+            <p className="text-text-secondary text-lg mb-6">
+              {bike.make} — {bike.model}
+            </p>
 
-            {/* Description */}
-            <div className="mb-8">
-              <h2 className="text-lg font-bold text-text-primary mb-3">
-                {t('description')}
-              </h2>
-              <p className="text-text-secondary leading-relaxed">
-                {description}
+            {/* Contact for Pricing CTA */}
+            <div className="mb-8 p-5 bg-primary/10 border border-primary/20 rounded-lg">
+              <p className="text-xl font-bold text-primary mb-2">
+                {isRtl ? 'اسأل عن السعر' : 'Ask for Price'}
               </p>
-            </div>
-
-            {/* Specs */}
-            <div className="mb-8">
-              <h2 className="text-lg font-bold text-text-primary mb-4">
-                {t('specifications')}
-              </h2>
-              <div className="grid grid-cols-2 gap-3">
-                {bike.specs.map((spec) => (
-                  <div
-                    key={spec.labelEn}
-                    className="bg-bg-surface border border-border rounded-lg p-4"
-                  >
-                    <span className="text-xs text-text-muted font-medium block mb-1">
-                      {isRtl ? spec.labelAr : spec.labelEn}
-                    </span>
-                    <p className="text-sm font-bold text-text-primary">
-                      {spec.value}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                {isRtl
+                  ? 'تواصل معنا لمعرفة السعر الحالي وتفاصيل التوافر.'
+                  : 'Contact us for current pricing and availability.'}
+              </p>
             </div>
 
             {/* CTAs — Both Branches */}
@@ -129,7 +94,7 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
                   className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
                 >
                   <MessageCircle className="w-5 h-5" />
-                  {t('cairoWhatsapp')}
+                  {isRtl ? 'واتساب القاهرة' : 'Cairo WhatsApp'}
                 </a>
                 <a
                   href={bikeInquiryLink(name, 'alexandria', locale)}
@@ -138,7 +103,7 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
                   className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
                 >
                   <MessageCircle className="w-5 h-5" />
-                  {t('alexWhatsapp')}
+                  {isRtl ? 'واتساب إسكندرية' : 'Alex WhatsApp'}
                 </a>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -147,14 +112,14 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
                   className="flex-1 flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-medium transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
-                  {t('callCairo')} — {LOCATIONS.cairo.phone}
+                  {isRtl ? 'اتصل بالقاهرة' : 'Call Cairo'} — {LOCATIONS.cairo.phone}
                 </a>
                 <a
                   href={`tel:${LOCATIONS.alexandria.phone}`}
                   className="flex-1 flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-medium transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
-                  {t('callAlex')} — {LOCATIONS.alexandria.phone}
+                  {isRtl ? 'اتصل بالإسكندرية' : 'Call Alex'} — {LOCATIONS.alexandria.phone}
                 </a>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { Bike, Brand, BikeType, FuelType } from '@/types';
+import type { Bike, Brand, BikeType } from '@/types';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -19,16 +19,16 @@ export function getBikeBySlug(bikes: Bike[], slug: string): Bike | null {
 
 export function filterBikes(
   bikes: Bike[],
-  filters: { brand?: Brand; type?: BikeType; fuel?: FuelType }
+  filters: { brand?: Brand; type?: BikeType }
 ): Bike[] {
   return bikes.filter((bike) => {
-    if (filters.brand && bike.brand !== filters.brand) return false;
+    if (filters.brand && bike.make.toUpperCase() !== filters.brand) return false;
     if (filters.type && bike.type !== filters.type) return false;
-    if (filters.fuel && bike.fuel !== filters.fuel) return false;
     return true;
   });
 }
 
 export function getFeaturedBikes(bikes: Bike[]): Bike[] {
-  return bikes.filter((b) => b.isFeatured);
+  // Show first 6 bikes as featured (diverse selection across brands)
+  return bikes.slice(0, 6);
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useState, useMemo } from 'react';
 import { bikes } from '@/data/bikes';
 import FilterBar from '@/components/features/catalog/FilterBar';
@@ -9,12 +9,11 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import type { Locale } from '@/types';
 
 export default function CatalogPage() {
-  const t = useTranslations('catalog');
   const locale = useLocale() as Locale;
+  const isArabic = locale === 'ar';
 
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
-  const [fuelFilter, setFuelFilter] = useState('all');
   const [brandFilter, setBrandFilter] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
 
@@ -25,9 +24,10 @@ export default function CatalogPage() {
       const q = search.toLowerCase();
       result = result.filter(
         (b) =>
-          b.name.toLowerCase().includes(q) ||
-          b.nameAr.includes(q) ||
-          b.brand.toLowerCase().includes(q)
+          b.name.en.toLowerCase().includes(q) ||
+          b.name.ar.includes(q) ||
+          b.make.toLowerCase().includes(q) ||
+          b.model.toLowerCase().includes(q)
       );
     }
 
@@ -35,21 +35,16 @@ export default function CatalogPage() {
       result = result.filter((b) => b.type === typeFilter);
     }
 
-    if (fuelFilter !== 'all') {
-      result = result.filter((b) => b.fuel === fuelFilter);
-    }
-
     if (brandFilter !== 'all') {
-      result = result.filter((b) => b.brand === brandFilter);
+      result = result.filter((b) => b.make.toUpperCase() === brandFilter);
     }
 
     return result;
-  }, [search, typeFilter, fuelFilter, brandFilter]);
+  }, [search, typeFilter, brandFilter]);
 
   const clearFilters = () => {
     setSearch('');
     setTypeFilter('all');
-    setFuelFilter('all');
     setBrandFilter('all');
   };
 
@@ -57,16 +52,17 @@ export default function CatalogPage() {
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <SectionHeading title={t('title')} subtitle={t('subtitle')} />
+        <SectionHeading
+          title={isArabic ? 'الكتالوج' : 'Catalog'}
+          subtitle={isArabic ? 'تصفح جميع الموتوسيكلات والسكوترات المتاحة' : 'Browse all available motorcycles and scooters'}
+        />
 
         {/* Filters */}
         <FilterBar
           typeFilter={typeFilter}
-          fuelFilter={fuelFilter}
           brandFilter={brandFilter}
           search={search}
           onTypeChange={setTypeFilter}
-          onFuelChange={setFuelFilter}
           onBrandChange={setBrandFilter}
           onSearchChange={setSearch}
           onClear={clearFilters}
@@ -77,7 +73,9 @@ export default function CatalogPage() {
         {/* Results count */}
         <div className="mb-6 text-center">
           <p className="text-text-muted text-sm">
-            {t('resultsCount', { count: filtered.length })}
+            {isArabic
+              ? `${filtered.length} نتيجة`
+              : `${filtered.length} result${filtered.length !== 1 ? 's' : ''}`}
           </p>
         </div>
 
@@ -85,13 +83,13 @@ export default function CatalogPage() {
         {filtered.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-text-secondary text-lg mb-4">
-              {t('noResults')}
+              {isArabic ? 'لا توجد نتائج' : 'No results found'}
             </p>
             <button
               onClick={clearFilters}
               className="px-6 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:text-white transition-all"
             >
-              {t('resetFilters')}
+              {isArabic ? 'إعادة تعيين الفلاتر' : 'Reset Filters'}
             </button>
           </div>
         ) : (

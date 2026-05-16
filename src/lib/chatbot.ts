@@ -7,10 +7,7 @@ import { LOCATIONS, SOCIAL_LINKS, SITE_NAME } from '@/lib/constants';
 function buildCatalogContext(): string {
   return bikes
     .map((bike) => {
-      const specs = bike.specs
-        .map((s) => `${s.labelEn}: ${s.value}`)
-        .join(', ');
-      return `- ${bike.name} (${bike.nameAr}) | Brand: ${bike.brand} | Type: ${bike.type} | Fuel: ${bike.fuel} | Electric: ${bike.isElectric ? 'Yes' : 'No'} | New: ${bike.isNew ? 'Yes' : 'No'} | Specs: ${specs} | EN: ${bike.descriptionEn} | AR: ${bike.descriptionAr}`;
+      return `- ${bike.name.en} (${bike.name.ar}) | Brand: ${bike.make} | Model: ${bike.model} | Type: ${bike.type}`;
     })
     .join('\n');
 }

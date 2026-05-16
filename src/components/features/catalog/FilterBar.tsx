@@ -1,16 +1,15 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { SlidersHorizontal, ChevronDown, X } from 'lucide-react';
 import { BRANDS } from '@/lib/constants';
+import type { Locale } from '@/types';
 
 interface FilterBarProps {
   typeFilter: string;
-  fuelFilter: string;
   brandFilter: string;
   search: string;
   onTypeChange: (v: string) => void;
-  onFuelChange: (v: string) => void;
   onBrandChange: (v: string) => void;
   onSearchChange: (v: string) => void;
   onClear: () => void;
@@ -20,33 +19,26 @@ interface FilterBarProps {
 
 export default function FilterBar({
   typeFilter,
-  fuelFilter,
   brandFilter,
   search,
   onTypeChange,
-  onFuelChange,
   onBrandChange,
   onSearchChange,
   onClear,
   showFilters,
   onToggleFilters,
 }: FilterBarProps) {
-  const t = useTranslations('catalog');
+  const locale = useLocale() as Locale;
+  const isArabic = locale === 'ar';
 
   const typeButtons = [
-    { key: 'all', label: t('filterAll') },
-    { key: 'motorcycle', label: t('filterMotorcycle') },
-    { key: 'scooter', label: t('filterScooter') },
-  ];
-
-  const fuelButtons = [
-    { key: 'all', label: t('filterAll') },
-    { key: 'gas', label: t('fuelGas') },
-    { key: 'electric', label: t('fuelElectric') },
+    { key: 'all', label: isArabic ? 'الكل' : 'All' },
+    { key: 'motorcycle', label: isArabic ? 'موتوسيكل' : 'Motorcycle' },
+    { key: 'scooter', label: isArabic ? 'سكوتر' : 'Scooter' },
   ];
 
   const hasActiveFilters =
-    search || typeFilter !== 'all' || fuelFilter !== 'all' || brandFilter !== 'all';
+    search || typeFilter !== 'all' || brandFilter !== 'all';
 
   return (
     <div className="mb-8 space-y-4">
@@ -56,7 +48,7 @@ export default function FilterBar({
           type="text"
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder={t('searchPlaceholder')}
+          placeholder={isArabic ? 'ابحث عن موتوسيكل أو سكوتر...' : 'Search motorcycles and scooters...'}
           className="w-full pl-4 pr-10 py-3 bg-bg-surface border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all"
         />
         {search && (
@@ -76,7 +68,7 @@ export default function FilterBar({
           className="flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-md text-text-secondary hover:border-primary hover:text-primary transition-all"
         >
           <SlidersHorizontal className="w-4 h-4" />
-          {t('filters')}
+          {isArabic ? 'الفلاتر' : 'Filters'}
           <ChevronDown
             className={`w-3 h-3 transition-transform duration-300 ${
               showFilters ? 'rotate-180' : ''
@@ -106,21 +98,6 @@ export default function FilterBar({
           </button>
         ))}
 
-        {/* Fuel pills */}
-        {fuelButtons.map((btn) => (
-          <button
-            key={`fuel-${btn.key}`}
-            onClick={() => onFuelChange(btn.key)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              fuelFilter === btn.key
-                ? 'bg-primary text-white'
-                : 'bg-bg-surface border border-border text-text-secondary hover:border-primary hover:text-white'
-            }`}
-          >
-            {btn.label}
-          </button>
-        ))}
-
         {/* Brand select */}
         <div className="relative">
           <select
@@ -128,7 +105,7 @@ export default function FilterBar({
             onChange={(e) => onBrandChange(e.target.value)}
             className="appearance-none bg-bg-surface border border-border rounded-md px-4 py-2 pr-10 text-sm font-medium text-text-secondary hover:border-primary focus:border-primary focus:outline-none transition-all cursor-pointer"
           >
-            <option value="all">{t('allBrands')}</option>
+            <option value="all">{isArabic ? 'كل الماركات' : 'All Brands'}</option>
             {BRANDS.map((brand) => (
               <option key={brand} value={brand}>
                 {brand}
@@ -145,7 +122,7 @@ export default function FilterBar({
             className="text-sm text-primary hover:text-primary-hover transition-colors flex items-center gap-1"
           >
             <X className="w-3 h-3" />
-            {t('resetFilters')}
+            {isArabic ? 'مسح الفلاتر' : 'Reset'}
           </button>
         )}
       </div>

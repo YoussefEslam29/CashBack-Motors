@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import { useTranslations, useLocale } from 'next-intl';
-import { MessageCircle, Zap, Fuel, Eye } from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { MessageCircle, Eye } from 'lucide-react';
 import { bikeInquiryLink } from '@/lib/whatsapp';
 import Badge from '@/components/ui/Badge';
 import type { Bike, Locale } from '@/types';
@@ -13,13 +13,9 @@ interface BikeCardProps {
 }
 
 export default function BikeCard({ bike }: BikeCardProps) {
-  const t = useTranslations('catalog');
   const locale = useLocale() as Locale;
-  const name = locale === 'ar' ? bike.nameAr : bike.name;
-  const engineSpec = bike.specs.find(
-    (s) => s.labelEn === 'Engine' || s.labelEn === 'Motor'
-  );
-  const speedSpec = bike.specs.find((s) => s.labelEn === 'Top Speed');
+  const isArabic = locale === 'ar';
+  const name = isArabic ? bike.name.ar : bike.name.en;
 
   return (
     <div className="bg-bg-surface border border-border rounded-lg overflow-hidden hover:border-primary hover:shadow-[0_0_24px_rgba(204,0,0,0.2)] transition-all duration-300 group">
@@ -34,40 +30,33 @@ export default function BikeCard({ bike }: BikeCardProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent" />
 
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex gap-2">
-          {bike.isElectric && (
-            <Badge variant="electric">
-              <Zap className="w-3 h-3" />
-              {t('electric')}
-            </Badge>
-          )}
-          {bike.isNew && (
-            <Badge variant="new">{t('new')}</Badge>
-          )}
+        {/* Type badge */}
+        <div className="absolute top-3 left-3">
+          <Badge variant="primary">
+            {bike.type === 'scooter' ? (isArabic ? 'سكوتر' : 'Scooter') : (isArabic ? 'موتوسيكل' : 'Motorcycle')}
+          </Badge>
         </div>
 
         {/* Brand badge */}
         <div className="absolute top-3 right-3">
-          <Badge variant="primary">{bike.brand}</Badge>
+          <Badge variant="primary">{bike.make}</Badge>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-5">
         <p className="text-text-secondary text-sm uppercase tracking-widest mb-1">
-          {bike.brand}
+          {bike.make}
         </p>
         <h3 className="text-white font-bold text-xl mb-2 leading-tight group-hover:text-primary transition-colors">
           {name}
         </h3>
-        <p className="text-sm text-text-muted mb-3">
-          {engineSpec?.value} · {speedSpec?.value}
-        </p>
 
-        {/* Ask for Price */}
-        <p className="text-xl font-black text-primary mb-4">
-          {t('askPrice')}
+        {/* Contact for pricing */}
+        <p className="text-sm text-text-muted mb-4 leading-relaxed">
+          {isArabic
+            ? 'تواصل معنا لمعرفة السعر الحالي وتفاصيل التوافر.'
+            : 'Contact us for current pricing and availability.'}
         </p>
 
         {/* Actions */}
@@ -77,7 +66,7 @@ export default function BikeCard({ bike }: BikeCardProps) {
             className="w-full py-2.5 text-center text-sm font-medium border border-border rounded-md hover:border-primary hover:text-primary transition-all duration-300 flex items-center justify-center gap-2"
           >
             <Eye className="w-4 h-4" />
-            {t('viewDetails')}
+            {isArabic ? 'عرض التفاصيل' : 'View Details'}
           </Link>
           <div className="flex gap-2">
             <a
@@ -87,7 +76,7 @@ export default function BikeCard({ bike }: BikeCardProps) {
               className="flex-1 py-2 text-center text-xs font-medium bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/20 rounded-md hover:bg-[#25D366]/20 transition-all duration-300 flex items-center justify-center gap-1"
             >
               <MessageCircle className="w-3 h-3" />
-              {t('cairoWhatsapp')}
+              {isArabic ? 'واتساب القاهرة' : 'Cairo WhatsApp'}
             </a>
             <a
               href={bikeInquiryLink(name, 'alexandria', locale)}
@@ -96,7 +85,7 @@ export default function BikeCard({ bike }: BikeCardProps) {
               className="flex-1 py-2 text-center text-xs font-medium bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/20 rounded-md hover:bg-[#25D366]/20 transition-all duration-300 flex items-center justify-center gap-1"
             >
               <MessageCircle className="w-3 h-3" />
-              {t('alexWhatsapp')}
+              {isArabic ? 'واتساب إسكندرية' : 'Alex WhatsApp'}
             </a>
           </div>
         </div>

@@ -14,8 +14,8 @@ export function bikeInquiryLink(
 ): string {
   const message =
     locale === 'ar'
-      ? `مرحبا، أنا مهتم بـ ${bikeName}. هل هو متاح؟`
-      : `Hello, I'm interested in the ${bikeName}. Is it available?`;
+      ? `مرحبا، أنا مهتم بـ ${bikeName}. هل هو متاح؟ ممكن أعرف السعر من فضلك.`
+      : `Hello, I'm interested in the ${bikeName}. Is it available? Please let me know the price.`;
   return buildWhatsAppLink(branch, message);
 }
 

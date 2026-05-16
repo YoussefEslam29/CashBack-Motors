@@ -1,9 +1,9 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
-import { ArrowRight, MessageCircle, Zap, Fuel } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { bikes } from '@/data/bikes';
 import { bikeInquiryLink } from '@/lib/whatsapp';
 import { getFeaturedBikes } from '@/lib/utils';
@@ -12,8 +12,8 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import type { Locale } from '@/types';
 
 export default function FeaturedBikes() {
-  const t = useTranslations('featured');
   const locale = useLocale() as Locale;
+  const isArabic = locale === 'ar';
   const featured = getFeaturedBikes(bikes);
 
   return (
@@ -22,21 +22,15 @@ export default function FeaturedBikes() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow={t('eyebrow')}
-          title={t('title')}
-          subtitle={t('subtitle')}
+          eyebrow={isArabic ? 'مختارات' : 'Our Selection'}
+          title={isArabic ? 'موديلات مميزة' : 'Featured Models'}
+          subtitle={isArabic ? 'اكتشف أبرز موتوسيكلات وسكوترات متاحة عندنا' : 'Discover the top motorcycles and scooters available at our showroom'}
         />
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((bike) => {
-            const name = locale === 'ar' ? bike.nameAr : bike.name;
-            const engineSpec = bike.specs.find(
-              (s) => s.labelEn === 'Engine' || s.labelEn === 'Motor'
-            );
-            const speedSpec = bike.specs.find(
-              (s) => s.labelEn === 'Top Speed'
-            );
+            const name = isArabic ? bike.name.ar : bike.name.en;
 
             return (
               <div
@@ -54,21 +48,16 @@ export default function FeaturedBikes() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent" />
 
-                  {/* Fuel badge */}
-                  <div className="absolute top-3 right-3">
-                    <Badge variant={bike.isElectric ? 'electric' : 'gas'}>
-                      {bike.isElectric ? (
-                        <Zap className="w-3 h-3" />
-                      ) : (
-                        <Fuel className="w-3 h-3" />
-                      )}
-                      {bike.isElectric ? 'Electric' : 'Gas'}
-                    </Badge>
-                  </div>
-
                   {/* Brand badge */}
                   <div className="absolute top-3 left-3">
-                    <Badge variant="primary">{bike.brand}</Badge>
+                    <Badge variant="primary">{bike.make}</Badge>
+                  </div>
+
+                  {/* Type badge */}
+                  <div className="absolute top-3 right-3">
+                    <Badge variant="primary">
+                      {bike.type === 'scooter' ? (isArabic ? 'سكوتر' : 'Scooter') : (isArabic ? 'موتوسيكل' : 'Motorcycle')}
+                    </Badge>
                   </div>
                 </div>
 
@@ -78,24 +67,12 @@ export default function FeaturedBikes() {
                     {name}
                   </h3>
 
-                  {/* Ask for Price */}
-                  <p className="text-2xl font-black text-primary mb-4">
-                    {t('askPrice')}
+                  {/* Contact for pricing */}
+                  <p className="text-sm text-text-muted mb-5 leading-relaxed">
+                    {isArabic
+                      ? 'تواصل معنا لمعرفة السعر الحالي وتفاصيل التوافر.'
+                      : 'Contact us for current pricing and availability.'}
                   </p>
-
-                  {/* Quick Specs */}
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {engineSpec && (
-                      <span className="px-2 py-1 bg-bg-elevated rounded-sm text-xs text-text-secondary">
-                        {engineSpec.value}
-                      </span>
-                    )}
-                    {speedSpec && (
-                      <span className="px-2 py-1 bg-bg-elevated rounded-sm text-xs text-text-secondary">
-                        {speedSpec.value}
-                      </span>
-                    )}
-                  </div>
 
                   {/* Actions */}
                   <div className="flex items-center gap-3">
@@ -103,7 +80,7 @@ export default function FeaturedBikes() {
                       href={`/catalog/${bike.slug}`}
                       className="flex-1 py-2.5 text-center text-sm font-medium border border-border rounded-md hover:border-primary hover:text-primary transition-all duration-300"
                     >
-                      {t('specs')}
+                      {isArabic ? 'التفاصيل' : 'Details'}
                     </Link>
                     <a
                       href={bikeInquiryLink(name, 'cairo', locale)}
@@ -112,7 +89,7 @@ export default function FeaturedBikes() {
                       className="flex-1 py-2.5 text-center text-sm font-medium bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/20 rounded-md hover:bg-[#25D366]/20 transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       <MessageCircle className="w-4 h-4" />
-                      {t('inquire')}
+                      {isArabic ? 'استفسار' : 'Inquire'}
                     </a>
                   </div>
                 </div>
@@ -127,7 +104,7 @@ export default function FeaturedBikes() {
             href="/catalog"
             className="inline-flex items-center gap-2 px-8 py-3 border border-primary text-primary rounded-md font-medium hover:bg-primary hover:text-white transition-all duration-300 group"
           >
-            {t('viewAll')}
+            {isArabic ? 'عرض الكل' : 'View All'}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
