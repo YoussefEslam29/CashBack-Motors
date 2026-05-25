@@ -58,7 +58,7 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/contact"
-            className="px-8 py-4 border border-border hover:border-primary rounded-xl text-text-secondary hover:text-text-primary font-medium text-lg transition-all duration-300 hover:bg-primary/5"
+            className="px-8 py-4 border border-zinc-700 hover:border-primary rounded-xl text-zinc-300 hover:text-zinc-50 font-medium text-lg transition-all duration-300 hover:bg-primary/5"
           >
             {t("ctaContact")}
           </Link>

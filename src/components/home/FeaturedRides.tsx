@@ -75,7 +75,7 @@ export default function FeaturedRides() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-lg font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-bold text-zinc-50 mb-2 group-hover:text-primary transition-colors">
                   {locale === "ar" ? product.nameAr : product.name}
                 </h3>
 
@@ -98,7 +98,7 @@ export default function FeaturedRides() {
                 <div className="flex items-center gap-3">
                   <Link
                     href={`/catalog/${product.slug}`}
-                    className="flex-1 py-2.5 text-center text-sm font-medium border border-border rounded-lg hover:border-primary hover:text-primary transition-all duration-300"
+                    className="flex-1 py-2.5 text-center text-sm font-medium text-zinc-300 border border-zinc-700 rounded-lg hover:border-primary hover:text-primary transition-all duration-300"
                   >
                     {t("specs")}
                   </Link>

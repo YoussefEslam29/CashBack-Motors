@@ -63,7 +63,7 @@ export default function BikeCard({ bike }: BikeCardProps) {
         <div className="flex flex-col gap-2">
           <Link
             href={`/catalog/${bike.slug}`}
-            className="w-full py-2.5 text-center text-sm font-medium border border-border rounded-md hover:border-primary hover:text-primary transition-all duration-300 flex items-center justify-center gap-2"
+            className="w-full py-2.5 text-center text-sm font-medium text-zinc-300 border border-zinc-700 rounded-md hover:border-primary hover:text-primary transition-all duration-300 flex items-center justify-center gap-2"
           >
             <Eye className="w-4 h-4" />
             {isArabic ? 'عرض التفاصيل' : 'View Details'}

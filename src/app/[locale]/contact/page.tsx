@@ -297,14 +297,14 @@ export default function ContactPage() {
                 </a>
                 <a
                   href={`tel:${LOCATIONS.cairo.phone}`}
-                  className="flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-bold transition-all duration-300"
+                  className="flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-primary font-bold transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
                   {t('callUs')} — {LOCATIONS.cairo.phone}
                 </a>
                 <a
                   href={`tel:${LOCATIONS.alexandria.phone}`}
-                  className="flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-bold transition-all duration-300"
+                  className="flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-primary font-bold transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
                   {t('callUs')} — {LOCATIONS.alexandria.phone}

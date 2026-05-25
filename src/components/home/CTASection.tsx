@@ -52,7 +52,7 @@ export default function CTASection() {
           {/* Call — Cairo */}
           <a
             href={`tel:${LOCATIONS.cairo.phone}`}
-            className="group flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-text-primary font-medium text-lg transition-all duration-300"
+            className="group flex items-center justify-center gap-3 px-8 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-zinc-50 font-medium text-lg transition-all duration-300"
           >
             <Phone className="w-5 h-5 group-hover:text-primary transition-colors" />
             {t('call')} — {LOCATIONS.cairo.phone}
@@ -60,7 +60,7 @@ export default function CTASection() {
           {/* Call — Alexandria */}
           <a
             href={`tel:${LOCATIONS.alexandria.phone}`}
-            className="group flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-text-primary font-medium text-lg transition-all duration-300"
+            className="group flex items-center justify-center gap-3 px-8 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-zinc-50 font-medium text-lg transition-all duration-300"
           >
             <Phone className="w-5 h-5 group-hover:text-primary transition-colors" />
             {t('call')} — {LOCATIONS.alexandria.phone}

@@ -32,7 +32,7 @@ export default function FeaturedBikes() {
     show: { 
       opacity: 1, 
       y: 0,
-      transition: { type: 'spring', stiffness: 50, damping: 15 }
+      transition: { type: 'spring' as const, stiffness: 50, damping: 15 }
     },
   };
 
@@ -97,7 +97,7 @@ export default function FeaturedBikes() {
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-primary-hover transition-colors">
+                  <h3 className="text-lg font-bold text-zinc-50 mb-2 group-hover:text-primary transition-colors">
                     {name}
                   </h3>
 
@@ -112,7 +112,7 @@ export default function FeaturedBikes() {
                   <div className="flex items-center gap-3">
                     <Link
                       href={`/catalog/${bike.slug}`}
-                      className="flex-1 py-2.5 text-center text-sm font-medium border border-border rounded-md hover:border-primary hover:text-primary transition-all duration-300"
+                      className="flex-1 py-2.5 text-center text-sm font-medium text-zinc-300 border border-zinc-700 rounded-md hover:border-primary hover:text-primary transition-all duration-300"
                     >
                       {isArabic ? 'التفاصيل' : 'Details'}
                     </Link>

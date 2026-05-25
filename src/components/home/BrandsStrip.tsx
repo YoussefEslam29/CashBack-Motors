@@ -27,7 +27,7 @@ export default function BrandsStrip() {
               className="group glass-card rounded-xl px-8 py-5 text-center hover:border-primary transition-all duration-300"
               style={{ animationDelay: `${index * 0.08}s` }}
             >
-              <p className="text-lg font-black text-text-secondary group-hover:text-primary transition-colors duration-300 tracking-wide">
+              <p className="text-lg font-black text-zinc-50 group-hover:text-primary transition-colors duration-300 tracking-wide">
                 {brand}
               </p>
             </Link>

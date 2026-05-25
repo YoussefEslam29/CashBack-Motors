@@ -25,7 +25,7 @@ export default function Hero() {
     show: { 
       opacity: 1, 
       y: 0,
-      transition: { type: 'spring', stiffness: 50, damping: 15 }
+      transition: { type: 'spring' as const, stiffness: 50, damping: 15 }
     },
   };
 
@@ -85,8 +85,8 @@ export default function Hero() {
         </motion.div>
 
         {/* Main tagline */}
-        <motion.h1 variants={itemVariants} className="text-hero font-black mb-6 font-display uppercase text-primary">
-          <span>{t('tagline')}</span>
+        <motion.h1 variants={itemVariants} className="text-hero font-black mb-6 font-display uppercase">
+          <span className="gradient-text">{t('tagline')}</span>
         </motion.h1>
 
         {/* Subtitle */}

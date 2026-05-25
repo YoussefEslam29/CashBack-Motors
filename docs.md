@@ -9,6 +9,31 @@
 
 ---
 
+### 2026-05-25 — Text & Icon Visibility Fix
+
+**Plan:** `plan-text-fix.md`
+**Details:** `docs-text-fix.md`
+
+**Problem:** Across the entire site, text and icons were invisible — rendering dark grey/black against the near-black background. Affected: Hero heading, Brand strip labels, Featured Models cards (hover), View All buttons, CTA call buttons, and all ghost/secondary buttons.
+
+**Root Cause:** The shadcn `:root` CSS variables had light-mode defaults (`--foreground: oklch(0.145 0 0)` = near-black) which cascaded via `@layer base { body { @apply text-foreground } }`. Additionally, `.gradient-text` used a red-to-red gradient (invisible on dark bg).
+
+**Fixes applied:**
+
+| Scope | Files Changed | Fix |
+|---|---|---|
+| Root cause | `globals.css` | Replaced `:root` shadcn vars with dark-mode values; changed `.gradient-text` to white→red gradient |
+| Hero | `Hero.tsx` | Tagline uses `gradient-text` (white→red) instead of solid `text-primary` |
+| Featured cards | `FeaturedBikes.tsx`, `FeaturedRides.tsx` | Card titles use `text-zinc-50`; action links use `text-zinc-300 border-zinc-700` |
+| Catalog cards | `BikeCard.tsx` | "View Details" link gets explicit `text-zinc-300 border-zinc-700` |
+| Brand labels | `BrandsStrip.tsx` | Brand names changed from `text-text-secondary` to `text-zinc-50` |
+| CTA buttons | `CTASection.tsx`, `contact/page.tsx`, `ProductDetailClient.tsx` | Call buttons use `text-zinc-300 border-zinc-700` |
+| Legacy hero | `HeroSection.tsx` | Contact CTA uses `text-zinc-300 border-zinc-700` |
+
+No component structure, logic, types, translations, or theme colours were changed.
+
+---
+
 ### 2026-05-11 — Hydration Mismatch Fix
 
 **Plan:** `plan_fix_nextjs_error.md`
