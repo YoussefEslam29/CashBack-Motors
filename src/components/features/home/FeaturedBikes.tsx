@@ -69,7 +69,7 @@ export default function FeaturedBikes() {
               <motion.div
                 variants={itemVariants}
                 key={bike.id}
-                className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-lg overflow-hidden hover:border-zinc-600 hover:shadow-lg hover:bg-zinc-800/50 transition-all duration-300 group"
+                className="bg-bg-surface backdrop-blur-md border border-border/50 rounded-lg overflow-hidden hover:border-primary hover:shadow-glow-red hover:bg-bg-elevated/50 transition-all duration-300 group"
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-bg-elevated">
@@ -102,7 +102,7 @@ export default function FeaturedBikes() {
                   </h3>
 
                   {/* Contact for pricing */}
-                  <p className="text-sm text-text-muted mb-5 leading-relaxed">
+                  <p className="text-sm text-text-secondary mb-5 leading-relaxed">
                     {isArabic
                       ? 'تواصل معنا لمعرفة السعر الحالي وتفاصيل التوافر.'
                       : 'Contact us for current pricing and availability.'}
@@ -112,7 +112,7 @@ export default function FeaturedBikes() {
                   <div className="flex items-center gap-3">
                     <Link
                       href={`/catalog/${bike.slug}`}
-                      className="flex-1 py-2.5 text-center text-sm font-medium text-zinc-300 border border-zinc-700 rounded-md hover:border-primary hover:text-primary transition-all duration-300"
+                      className="flex-1 min-h-12 flex items-center justify-center text-center text-sm font-medium text-text-secondary border border-zinc-700 rounded-md hover:border-primary hover:text-primary transition-all duration-300"
                     >
                       {isArabic ? 'التفاصيل' : 'Details'}
                     </Link>
@@ -120,7 +120,7 @@ export default function FeaturedBikes() {
                       href={bikeInquiryLink(name, 'cairo', locale)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-2.5 text-center text-sm font-medium bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/20 rounded-md hover:bg-[#25D366]/20 transition-all duration-300 flex items-center justify-center gap-2"
+                      className="flex-1 min-h-12 flex items-center justify-center gap-2 text-center text-sm font-medium bg-success/10 text-success border border-success/20 rounded-md hover:bg-success/20 transition-all duration-300"
                     >
                       <MessageCircle className="w-4 h-4" />
                       {isArabic ? 'استفسار' : 'Inquire'}
@@ -136,7 +136,7 @@ export default function FeaturedBikes() {
         <div className="text-center mt-12">
           <Link
             href="/catalog"
-            className="inline-flex items-center gap-2 px-8 py-3 border border-primary text-primary rounded-md font-medium hover:bg-primary hover:text-white transition-all duration-300 group"
+            className="inline-flex min-h-12 items-center justify-center gap-2 px-8 border border-primary text-primary rounded-md font-medium hover:bg-primary hover:text-white transition-all duration-300 group"
           >
             {isArabic ? 'عرض الكل' : 'View All'}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

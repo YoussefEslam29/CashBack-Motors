@@ -1,6 +1,6 @@
 export type FuelType = 'gas' | 'electric';
 export type BikeType = 'motorcycle' | 'scooter';
-export type Brand = 'ZONTOS' | 'SYM' | 'KEEWAY' | 'HOGAN' | 'DAYUN' | 'BENELLI' | 'VIGOREY';
+export type Brand = 'ZONTES' | 'SYM' | 'KEEWAY' | 'HOGAN' | 'DAYUN' | 'BENELLI' | 'VIGOREY';
 
 export interface Bike {
   id: string;

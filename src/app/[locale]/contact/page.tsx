@@ -63,7 +63,7 @@ export default function ContactPage() {
         {/* Contact Cards Grid — Both Branches */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {/* Cairo Branch */}
-          <div className="bg-bg-surface border border-border rounded-lg p-8 hover:border-primary transition-all duration-300">
+          <div className="bg-bg-surface border border-border rounded-lg p-8 hover:border-primary hover:shadow-glow-red transition-all duration-300 group">
             <h3 className="text-lg font-bold text-text-primary mb-4 font-display uppercase">
               {t('cairoBranch')}
             </h3>
@@ -82,9 +82,9 @@ export default function ContactPage() {
                 href={buildWhatsAppLink('cairo')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-3 bg-bg-elevated rounded-lg border border-border hover:border-[#25D366] transition-all duration-300"
+                className="flex items-center gap-4 p-3 bg-bg-elevated rounded-lg border border-border hover:border-whatsapp transition-all duration-300"
               >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                <MessageCircle className="w-5 h-5 text-whatsapp" />
                 <div>
                   <p className="text-xs text-text-muted">{t('whatsapp')}</p>
                   <p className="text-text-primary font-medium">{LOCATIONS.cairo.phone}</p>
@@ -94,7 +94,7 @@ export default function ContactPage() {
           </div>
 
           {/* Alexandria Branch */}
-          <div className="bg-bg-surface border border-border rounded-lg p-8 hover:border-primary transition-all duration-300">
+          <div className="bg-bg-surface border border-border rounded-lg p-8 hover:border-primary hover:shadow-glow-red transition-all duration-300 group">
             <h3 className="text-lg font-bold text-text-primary mb-4 font-display uppercase">
               {t('alexBranch')}
             </h3>
@@ -113,9 +113,9 @@ export default function ContactPage() {
                 href={buildWhatsAppLink('alexandria')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-3 bg-bg-elevated rounded-lg border border-border hover:border-[#25D366] transition-all duration-300"
+                className="flex items-center gap-4 p-3 bg-bg-elevated rounded-lg border border-border hover:border-whatsapp transition-all duration-300"
               >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                <MessageCircle className="w-5 h-5 text-whatsapp" />
                 <div>
                   <p className="text-xs text-text-muted">{t('whatsapp')}</p>
                   <p className="text-text-primary font-medium">{LOCATIONS.alexandria.phone}</p>
@@ -224,7 +224,7 @@ export default function ContactPage() {
                   }
                   placeholder={t('namePlaceholder')}
                   required
-                  className="w-full px-4 py-3 bg-bg-dark border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all"
+                  className="w-full px-4 py-3 bg-bg-base border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all"
                 />
               </div>
               <div>
@@ -239,7 +239,7 @@ export default function ContactPage() {
                   }
                   placeholder={t('phonePlaceholder')}
                   required
-                  className="w-full px-4 py-3 bg-bg-dark border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all"
+                  className="w-full px-4 py-3 bg-bg-base border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all"
                 />
               </div>
               <div>
@@ -254,12 +254,12 @@ export default function ContactPage() {
                   placeholder={t('messagePlaceholder')}
                   rows={4}
                   required
-                  className="w-full px-4 py-3 bg-bg-dark border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all resize-none"
+                  className="w-full px-4 py-3 bg-bg-base border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all resize-none"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold text-lg transition-all duration-300 hover:scale-[1.02]"
+                className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-whatsapp hover:bg-whatsapp/90 rounded-md text-white font-bold text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg shadow-whatsapp/20"
               >
                 <Send className="w-5 h-5" />
                 {t('send')}
@@ -281,7 +281,7 @@ export default function ContactPage() {
                   href={buildWhatsAppLink('cairo')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
+                  className="flex items-center justify-center gap-3 px-6 py-4 bg-whatsapp hover:bg-whatsapp/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
                 >
                   <MessageCircle className="w-5 h-5" />
                   {t('whatsapp')} — {t('branchCairo')}
@@ -290,21 +290,21 @@ export default function ContactPage() {
                   href={buildWhatsAppLink('alexandria')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
+                  className="flex items-center justify-center gap-3 px-6 py-4 bg-whatsapp hover:bg-whatsapp/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
                 >
                   <MessageCircle className="w-5 h-5" />
                   {t('whatsapp')} — {t('branchAlex')}
                 </a>
                 <a
                   href={`tel:${LOCATIONS.cairo.phone}`}
-                  className="flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-primary font-bold transition-all duration-300"
+                  className="flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-bold transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
                   {t('callUs')} — {LOCATIONS.cairo.phone}
                 </a>
                 <a
                   href={`tel:${LOCATIONS.alexandria.phone}`}
-                  className="flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-primary font-bold transition-all duration-300"
+                  className="flex items-center justify-center gap-3 px-6 py-4 border border-border hover:border-primary rounded-md text-text-secondary hover:text-primary font-bold transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
                   {t('callUs')} — {LOCATIONS.alexandria.phone}
@@ -337,7 +337,7 @@ export default function ContactPage() {
                       href={branch.location.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-all duration-300"
+                      className="flex items-center min-h-12 gap-2 px-4 py-2 text-sm font-medium bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-all duration-300"
                     >
                       <Navigation className="w-4 h-4" />
                       {t('getDirections')}
@@ -349,7 +349,7 @@ export default function ContactPage() {
                     src={branch.location.embedUrl}
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
+                    style={{ border: 0, borderRadius: '0 0 8px 8px', filter: 'invert(90%) hue-rotate(180deg)' }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

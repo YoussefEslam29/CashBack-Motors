@@ -5,32 +5,32 @@ export const bikes: Bike[] = [
   {
     id: 'zontes-k368',
     slug: 'zontes-k368',
-    make: 'ZONTOS',
+    make: 'ZONTES',
     model: 'K368',
     name: { en: 'Zontes K368', ar: 'زونتس K368' },
     type: 'scooter',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/zontes-k368.webp'],
   },
   {
     id: 'zontes-m150',
     slug: 'zontes-m150',
-    make: 'ZONTOS',
+    make: 'ZONTES',
     model: 'M150',
     name: { en: 'Zontes M150', ar: 'زونتس M150' },
     type: 'scooter',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/zontes-m150.webp'],
   },
   {
     id: 'zontes-g1-155',
     slug: 'zontes-g1-155',
-    make: 'ZONTOS',
+    make: 'ZONTES',
     model: 'G1 155',
     name: { en: 'Zontes G1 155', ar: 'زونتس G1 155' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/zontes-g1-155.webp'],
   },
 
   // ── KEEWAY ─────────────────────────────────────────────────
@@ -42,7 +42,7 @@ export const bikes: Bike[] = [
     name: { en: 'Keeway Clight Digital', ar: 'كي واي سي لايت ديجيتال' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/classic-commuter.webp'],
   },
   {
     id: 'keeway-keet-200-inj',
@@ -52,7 +52,7 @@ export const bikes: Bike[] = [
     name: { en: 'Keeway Keet 200 Inj', ar: 'كي واي كيت 200 إنجكشن' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/classic-commuter.webp'],
   },
   {
     id: 'keeway-keet150-nobox',
@@ -62,7 +62,7 @@ export const bikes: Bike[] = [
     name: { en: 'Keeway Keet 150 (No Box)', ar: 'كي واي كيت 150 (بدون صندوق)' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/classic-commuter.webp'],
   },
   {
     id: 'keeway-maximous-200i',
@@ -72,7 +72,7 @@ export const bikes: Bike[] = [
     name: { en: 'Keeway Maximous 200i', ar: 'كي واي ماكسيموس 200i' },
     type: 'scooter',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/keeway-maximus.webp'],
   },
   {
     id: 'keeway-rkv250',
@@ -82,7 +82,7 @@ export const bikes: Bike[] = [
     name: { en: 'Keeway RKV 250', ar: 'كي واي RKV 250' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/sport-naked.webp'],
   },
   {
     id: 'keeway-nexy',
@@ -92,7 +92,7 @@ export const bikes: Bike[] = [
     name: { en: 'Keeway Nexy', ar: 'كي واي نكسي' },
     type: 'scooter',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/urban-commuter.webp'],
   },
   {
     id: 'keeway-xroad200-inj',
@@ -102,7 +102,7 @@ export const bikes: Bike[] = [
     name: { en: 'Keeway Xroad 200 Inj', ar: 'كي واي إكس رود 200 إنجكشن' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/adventure-xroad.webp'],
   },
 
   // ── HOGAN ──────────────────────────────────────────────────
@@ -114,7 +114,7 @@ export const bikes: Bike[] = [
     name: { en: 'Hogan Z250', ar: 'هوجان Z250' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/sport-naked.webp'],
   },
   {
     id: 'hogan-l250',
@@ -124,7 +124,7 @@ export const bikes: Bike[] = [
     name: { en: 'Hogan L250', ar: 'هوجان L250' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/sport-naked.webp'],
   },
   {
     id: 'hogan-tx250',
@@ -134,7 +134,7 @@ export const bikes: Bike[] = [
     name: { en: 'Hogan TX250', ar: 'هوجان TX250' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/adventure-xroad.webp'],
   },
   {
     id: 'hogan-v250',
@@ -144,7 +144,7 @@ export const bikes: Bike[] = [
     name: { en: 'Hogan V250', ar: 'هوجان V250' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/sport-naked.webp'],
   },
 
   // ── DAYUN ──────────────────────────────────────────────────
@@ -156,7 +156,7 @@ export const bikes: Bike[] = [
     name: { en: 'Dayun Xroad 150 CRP', ar: 'دايون إكس رود 150 CRP' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/adventure-xroad.webp'],
   },
   {
     id: 'dayun-dmax',
@@ -166,7 +166,7 @@ export const bikes: Bike[] = [
     name: { en: 'Dayun Dmax', ar: 'دايون دي ماكس' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/sport-naked.webp'],
   },
   {
     id: 'dayun-keet150',
@@ -176,7 +176,7 @@ export const bikes: Bike[] = [
     name: { en: 'Dayun Keet 150', ar: 'دايون كيت 150' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/classic-commuter.webp'],
   },
 
   // ── VIGORY ─────────────────────────────────────────────────
@@ -188,7 +188,7 @@ export const bikes: Bike[] = [
     name: { en: 'Vigory VG1 125', ar: 'فيجوري VG1 125' },
     type: 'scooter',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/urban-commuter.webp'],
   },
   {
     id: 'vigory-keet-150',
@@ -198,7 +198,7 @@ export const bikes: Bike[] = [
     name: { en: 'Vigory Keet 150', ar: 'فيجوري كيت 150' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/classic-commuter.webp'],
   },
   {
     id: 'vigory-keet200',
@@ -208,7 +208,7 @@ export const bikes: Bike[] = [
     name: { en: 'Vigory Keet 200', ar: 'فيجوري كيت 200' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/classic-commuter.webp'],
   },
   {
     id: 'vigory-xroad-150',
@@ -218,7 +218,7 @@ export const bikes: Bike[] = [
     name: { en: 'Vigory Xroad 150', ar: 'فيجوري إكس رود 150' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/adventure-xroad.webp'],
   },
   {
     id: 'vigory-xroad-200',
@@ -228,7 +228,7 @@ export const bikes: Bike[] = [
     name: { en: 'Vigory Xroad 200', ar: 'فيجوري إكس رود 200' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/adventure-xroad.webp'],
   },
   {
     id: 'vigory-vlr-cbf150',
@@ -238,7 +238,7 @@ export const bikes: Bike[] = [
     name: { en: 'Vigory VLR CBF 150', ar: 'فيجوري VLR CBF 150' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/sport-naked.webp'],
   },
   {
     id: 'vigory-cbf-vlr200',
@@ -248,6 +248,6 @@ export const bikes: Bike[] = [
     name: { en: 'Vigory CBF VLR 200', ar: 'فيجوري CBF VLR 200' },
     type: 'motorcycle',
     fuel: 'gas',
-    images: ['/placeholder.jpg'],
+    images: ['/bikes/sport-naked.webp'],
   },
 ];

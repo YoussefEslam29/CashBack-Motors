@@ -91,7 +91,7 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
                   href={bikeInquiryLink(name, 'cairo', locale)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
+                  className="flex-1 min-h-12 flex items-center justify-center gap-3 px-6 py-4 bg-whatsapp hover:bg-whatsapp/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
                 >
                   <MessageCircle className="w-5 h-5" />
                   {isRtl ? 'واتساب القاهرة' : 'Cairo WhatsApp'}
@@ -100,7 +100,7 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
                   href={bikeInquiryLink(name, 'alexandria', locale)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] hover:bg-[#25D366]/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
+                  className="flex-1 min-h-12 flex items-center justify-center gap-3 px-6 py-4 bg-whatsapp hover:bg-whatsapp/90 rounded-md text-white font-bold transition-all duration-300 hover:scale-[1.02]"
                 >
                   <MessageCircle className="w-5 h-5" />
                   {isRtl ? 'واتساب إسكندرية' : 'Alex WhatsApp'}
@@ -109,14 +109,14 @@ export default function ProductDetailClient({ bike }: ProductDetailClientProps) 
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href={`tel:${LOCATIONS.cairo.phone}`}
-                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-primary font-medium transition-all duration-300"
+                  className="flex-1 min-h-12 flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-text-secondary hover:text-primary font-medium transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
                   {isRtl ? 'اتصل بالقاهرة' : 'Call Cairo'} — {LOCATIONS.cairo.phone}
                 </a>
                 <a
                   href={`tel:${LOCATIONS.alexandria.phone}`}
-                  className="flex-1 flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-zinc-300 hover:text-primary font-medium transition-all duration-300"
+                  className="flex-1 min-h-12 flex items-center justify-center gap-3 px-6 py-4 border border-zinc-700 hover:border-primary rounded-md text-text-secondary hover:text-primary font-medium transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
                   {isRtl ? 'اتصل بالإسكندرية' : 'Call Alex'} — {LOCATIONS.alexandria.phone}

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Barlow_Condensed, DM_Sans, Cairo } from 'next/font/google';
 import '../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
@@ -54,6 +54,11 @@ export const metadata: Metadata = {
     description: 'Premium motorcycles & scooters in Egypt',
     type: 'website',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default async function LocaleLayout({

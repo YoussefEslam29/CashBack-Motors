@@ -2,8 +2,8 @@ import type { BrandMeta } from '@/types';
 
 export const brands: BrandMeta[] = [
   {
-    name: 'ZONTOS',
-    slug: 'zontos',
+    name: 'ZONTES',
+    slug: 'zontes',
     hasScooter: true,
     hasMotorcycle: true,
     hasElectric: false,

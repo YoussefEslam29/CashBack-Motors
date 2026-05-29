@@ -1,40 +1,46 @@
+# Cash Back Moto — Website
 
-<img width="820" height="360" alt="banner img" src="https://github.com/user-attachments/assets/e1795f6a-1a3d-4603-ae0e-79937cab5813" />
+Bilingual (EN/AR) motorcycle & scooter showcase website for Cash Back Moto,
+an Egyptian shop selling gas and electric motorcycles and scooters from 7 brands.
 
-<img width="750" height="750" alt="pfp CBM" src="https://github.com/user-attachments/assets/e99e0234-4f64-4996-bc31-147df70c2172" />
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Stack
+- Next.js 16 (App Router) + React 19
+- TypeScript (strict)
+- Tailwind CSS v4
+- shadcn/ui (radix-nova)
+- next-intl v4 (EN + AR, RTL)
+- Vercel deployment
 
 ## Getting Started
-
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Folder structure
+```
+src/app/[locale]/     — All pages (Home, Catalog, About, Contact)
+src/components/       — layout/, ui/, features/
+src/lib/              — constants.ts, whatsapp.ts, utils.ts
+src/types/index.ts    — All TypeScript types
+src/data/             — bikes.ts, brands.ts
+messages/             — en.json, ar.json
+design-system/        — Visual rules — read before writing any UI
+developer-guide.md    — Technical rules — read before writing any code
+AGENTS.md             — AI agent instructions — read this first
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding a new bike
+Edit `src/data/bikes.ts` and add a new entry following the `Bike` type.
+The catalog page renders from this file automatically.
 
-## Learn More
+## Branches
+- Alexandria: +20 11 10782513 | https://maps.app.goo.gl/nHStDGwekLnKUJAK7
+- Cairo: 010 05804463 | https://maps.app.goo.gl/USLPyWr7Mjdbr9x1A
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Social
+- Facebook: https://www.facebook.com/Cashbackmotoo
+- Instagram: https://www.instagram.com/cashbackmoto
+- TikTok: https://www.tiktok.com/@cashbackmoto

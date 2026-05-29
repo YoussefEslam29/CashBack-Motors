@@ -17,9 +17,9 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`WhatsApp - ${t('cairo')}`}
-        className="group flex items-center p-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800 text-zinc-50 font-semibold text-sm shadow-lg hover:bg-zinc-800/60 hover:border-zinc-700 transition-all duration-300"
+        className="group flex items-center min-h-12 min-w-12 p-3 rounded-full bg-bg-surface backdrop-blur-md border border-border text-text-primary font-semibold text-sm shadow-lg hover:bg-bg-elevated hover:border-border-active transition-all duration-300"
       >
-        <MessageCircle className="w-5 h-5 text-[#25D366]" />
+        <MessageCircle className="w-5 h-5 text-whatsapp" />
         <span className="max-w-0 opacity-0 overflow-hidden group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 whitespace-nowrap">
           {t('cairo')}
         </span>
@@ -30,9 +30,9 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`WhatsApp - ${t('alexandria')}`}
-        className="group flex items-center p-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800 text-zinc-50 font-semibold text-sm shadow-lg hover:bg-zinc-800/60 hover:border-zinc-700 transition-all duration-300"
+        className="group flex items-center min-h-12 min-w-12 p-3 rounded-full bg-bg-surface backdrop-blur-md border border-border text-text-primary font-semibold text-sm shadow-lg hover:bg-bg-elevated hover:border-border-active transition-all duration-300"
       >
-        <MessageCircle className="w-5 h-5 text-[#25D366]" />
+        <MessageCircle className="w-5 h-5 text-whatsapp" />
         <span className="max-w-0 opacity-0 overflow-hidden group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 whitespace-nowrap">
           {t('alexandria')}
         </span>

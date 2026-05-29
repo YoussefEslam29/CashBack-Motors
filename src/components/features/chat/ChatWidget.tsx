@@ -165,7 +165,7 @@ export default function ChatWidget() {
           isOpen
             ? 'bottom-[520px] w-11 h-11 bg-bg-elevated hover:bg-bg-hover border border-border'
             : 'bottom-24 w-14 h-14 bg-primary hover:bg-primary-dark chat-btn-glow'
-        } ${isRTL ? 'left-6' : 'right-6'}`}
+        } right-6`}
         style={!isOpen ? { boxShadow: '0 0 24px rgba(204, 0, 0, 0.5)' } : undefined}
       >
         {isOpen ? (
@@ -187,7 +187,7 @@ export default function ChatWidget() {
           isOpen
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 translate-y-8 pointer-events-none'
-        } ${isRTL ? 'left-6' : 'right-6'} bottom-6`}
+        } right-6 bottom-6`}
         style={{ width: '380px', height: '500px' }}
       >
         <div className="flex flex-col h-full rounded-xl overflow-hidden border border-border bg-bg-dark/95 backdrop-blur-xl shadow-2xl">

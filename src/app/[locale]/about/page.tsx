@@ -18,7 +18,6 @@ import {
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { BRANDS, LOCATIONS, SOCIAL_LINKS } from '@/lib/constants';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
-import SectionHeading from '@/components/ui/SectionHeading';
 import type { Locale } from '@/types';
 
 export default function AboutPage() {
@@ -59,76 +58,86 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="pt-24 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <SectionHeading title={t('title')} subtitle={t('subtitle')} />
+    <div className="pt-0 pb-20">
+      {/* Page Hero Banner */}
+      <section className="bg-bg-elevated border-b border-border py-20 text-center mb-16">
+        <div className="max-w-4xl mx-auto px-4">
+          <p className="text-primary text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+            {locale === 'ar' ? 'من نحن' : 'Who We Are'}
+          </p>
+          <h1 className="text-white font-display text-4xl md:text-5xl font-bold uppercase mb-4">
+            {t('title')}
+          </h1>
+          <p className="text-text-secondary mt-4 max-w-xl mx-auto text-lg">
+            {t('subtitle')}
+          </p>
+        </div>
+      </section>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Story Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6 font-display uppercase">
+            <p className="text-[#CC0000] text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+              {locale === 'ar' ? 'قصتنا' : 'Our Story'}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 font-display uppercase">
               {t('storyTitle')}
             </h2>
             <div className="red-line mb-6" />
-            <p className="text-text-secondary leading-relaxed mb-4">
+            <p className="text-[#A0A0A0] leading-relaxed mb-4">
               {t('storyP1')}
             </p>
-            <p className="text-text-secondary leading-relaxed">
+            <p className="text-[#A0A0A0] leading-relaxed">
               {t('storyP2')}
             </p>
           </div>
 
           {/* What We Offer */}
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6 font-display uppercase">
+            <p className="text-primary text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+              {locale === 'ar' ? 'خدماتنا' : 'Our Services'}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 font-display uppercase">
               {t('missionTitle')}
             </h2>
-            <div className="red-line mb-6" />
+            <div className="red-line mb-6 shadow-[0_0_8px_var(--color-primary)]" />
             <div className="space-y-4">
               {offerings.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-bg-surface border border-border rounded-lg p-5 flex items-center gap-4 hover:border-primary transition-all duration-300"
+                  className="bg-bg-surface backdrop-blur-md border border-border rounded-lg p-5 flex items-center gap-4 hover:border-primary hover:shadow-glow-red transition-all duration-300 group"
                 >
-                  <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border border-border group-hover:border-primary/50 transition-colors">
                     <item.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <p className="text-text-primary font-medium">{item.text}</p>
+                  <p className="text-white font-medium">{item.text}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Brands Section */}
-        <div className="mb-20">
-          <SectionHeading title={t('brandsTitle')} />
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
-            {BRANDS.map((brand) => (
-              <div
-                key={brand}
-                className="bg-bg-surface border border-border rounded-lg p-4 text-center hover:border-primary transition-all duration-300"
-              >
-                <p className="text-sm font-bold text-primary">{brand}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Stats */}
         <div className="mb-20">
-          <SectionHeading title={t('statsTitle')} />
+          <div className="text-center mb-10">
+            <p className="text-primary text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+              {locale === 'ar' ? 'إنجازاتنا' : 'Our Impact'}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white font-display uppercase">
+              {t('statsTitle')}
+            </h2>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="bg-bg-surface border border-border rounded-lg p-6 text-center hover:border-primary transition-all duration-300"
+                className="bg-bg-surface backdrop-blur-md border border-border rounded-lg p-6 text-center hover:border-primary hover:shadow-glow-red transition-all duration-300 group"
               >
-                <div className="w-14 h-14 mx-auto mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-lg bg-primary/10 border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
                   <stat.icon className="w-7 h-7 text-primary" />
                 </div>
-                <p className="text-3xl md:text-4xl font-black text-primary mb-2">
+                <p className="text-4xl font-black text-primary mb-2 font-display">
                   {stat.value}
                 </p>
                 <p className="text-text-secondary text-sm font-medium">
@@ -139,12 +148,34 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Brands Section */}
+        <div className="mb-20">
+          <div className="text-center mb-10">
+            <p className="text-primary text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+              {locale === 'ar' ? 'شركاؤنا' : 'Our Partners'}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white font-display uppercase">
+              {t('brandsTitle')}
+            </h2>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {BRANDS.map((brand) => (
+              <span
+                key={brand}
+                className="bg-bg-elevated border border-border text-text-secondary text-sm font-medium px-4 py-2 rounded-md uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-300"
+              >
+                {brand}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Locations */}
         <div className="mb-20">
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-3 mb-4">
               <MapPin className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl md:text-3xl font-bold text-text-primary font-display uppercase">
+              <h2 className="text-2xl md:text-3xl font-bold text-white font-display uppercase">
                 {t('locationTitle')}
               </h2>
             </div>
@@ -155,15 +186,15 @@ export default function AboutPage() {
             {branches.map((branch) => (
               <div
                 key={branch.key}
-                className="bg-bg-surface border border-border rounded-lg overflow-hidden hover:border-primary transition-all duration-300"
+                className="bg-bg-surface backdrop-blur-md border border-border rounded-lg overflow-hidden hover:border-primary hover:shadow-glow-red transition-all duration-300 group"
               >
                 <div className="p-6 border-b border-border">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-border group-hover:border-primary/50 transition-colors">
                         <MapPin className="w-5 h-5 text-primary" />
                       </div>
-                      <h3 className="text-lg font-bold text-text-primary">
+                      <h3 className="text-lg font-bold text-white">
                         {branch.name}
                       </h3>
                     </div>
@@ -183,11 +214,11 @@ export default function AboutPage() {
                     src={branch.location.embedUrl}
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
+                    style={{ border: 0, borderRadius: '0 0 8px 8px', filter: 'invert(90%) hue-rotate(180deg)' }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title={branch.name}
+                    title={`${branch.location.label} branch location`}
                   />
                 </div>
               </div>
@@ -196,15 +227,15 @@ export default function AboutPage() {
         </div>
 
         {/* Contact Section */}
-        <div className="bg-bg-surface border border-border rounded-lg p-8">
-          <h2 className="text-xl font-bold text-text-primary mb-4 font-display uppercase">
+        <div className="bg-bg-surface backdrop-blur-md border border-border rounded-lg p-8">
+          <h2 className="text-xl font-bold text-white mb-4 font-display uppercase">
             {t('contactTitle')}
           </h2>
           <p className="text-text-secondary mb-6">{t('contactDesc')}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             {/* Cairo */}
             <div className="space-y-3">
-              <p className="text-xs text-text-muted uppercase tracking-wider font-bold">
+              <p className="text-xs text-text-disabled uppercase tracking-wider font-bold">
                 {t('branchCairo')}
               </p>
               <a
@@ -212,7 +243,7 @@ export default function AboutPage() {
                 className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg border border-border hover:border-primary transition-all duration-300"
               >
                 <Phone className="w-5 h-5 text-primary" />
-                <span className="text-text-primary font-medium">
+                <span className="text-white font-medium">
                   {LOCATIONS.cairo.phone}
                 </span>
               </a>
@@ -220,17 +251,17 @@ export default function AboutPage() {
                 href={buildWhatsAppLink('cairo')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg border border-border hover:border-[#25D366] transition-all duration-300"
+                className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg border border-border hover:border-whatsapp transition-all duration-300"
               >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                <span className="text-text-primary font-medium">
+                <MessageCircle className="w-5 h-5 text-whatsapp" />
+                <span className="text-white font-medium">
                   {LOCATIONS.cairo.phone}
                 </span>
               </a>
             </div>
             {/* Alexandria */}
             <div className="space-y-3">
-              <p className="text-xs text-text-muted uppercase tracking-wider font-bold">
+              <p className="text-xs text-text-disabled uppercase tracking-wider font-bold">
                 {t('branchAlex')}
               </p>
               <a
@@ -238,7 +269,7 @@ export default function AboutPage() {
                 className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg border border-border hover:border-primary transition-all duration-300"
               >
                 <Phone className="w-5 h-5 text-primary" />
-                <span className="text-text-primary font-medium">
+                <span className="text-white font-medium">
                   {LOCATIONS.alexandria.phone}
                 </span>
               </a>
@@ -246,10 +277,10 @@ export default function AboutPage() {
                 href={buildWhatsAppLink('alexandria')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg border border-border hover:border-[#25D366] transition-all duration-300"
+                className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg border border-border hover:border-whatsapp transition-all duration-300"
               >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                <span className="text-text-primary font-medium">
+                <MessageCircle className="w-5 h-5 text-whatsapp" />
+                <span className="text-white font-medium">
                   {LOCATIONS.alexandria.phone}
                 </span>
               </a>
@@ -264,7 +295,7 @@ export default function AboutPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-11 h-11 rounded-full bg-bg-elevated border border-border flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary transition-all duration-300"
+                className="w-11 h-11 rounded-full bg-bg-elevated border border-border flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary hover:shadow-glow-red transition-all duration-300"
               >
                 <social.icon className="w-4 h-4" />
               </a>
