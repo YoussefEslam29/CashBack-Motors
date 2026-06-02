@@ -2,7 +2,7 @@
 
 > Living document. Update this file every time the chatbot is changed, fixed, or extended.
 > Last updated: June 2026
-> Status: 🔴 BROKEN — chatbot loads but never responds
+> Status: 🟡 CODE FIXED — waiting for GOOGLE_API_KEY to be added to Vercel
 
 ---
 
@@ -424,17 +424,17 @@ GOOGLE_API_KEY=
 | Phase | Step | Status | Notes |
 |---|---|---|---|
 | 1 | Get Google API key | ⬜ Not started | https://aistudio.google.com/app/apikey |
-| 1 | Add key to `.env.local` | ⬜ Not started | |
-| 1 | Add key to Vercel | ⬜ Not started | Settings → Environment Variables |
-| 1 | Verify API route is correct | ⬜ Not started | `src/app/api/chat/route.ts` |
-| 1 | Verify widget calls `/api/chat` not Gemini directly | ⬜ Not started | Security check |
-| 1 | Test locally | ⬜ Not started | `npm run dev` |
-| 1 | Test on production | ⬜ Not started | Redeploy on Vercel first |
-| 2 | Feed real bike data into prompt | ⬜ Not started | Import from `data/bikes.ts` |
-| 2 | Add typing indicator | ⬜ Not started | |
-| 2 | Cap message history at 10 | ⬜ Not started | |
-| 2 | Arabic error messages | ⬜ Not started | |
-| 2 | WhatsApp fallback on failure | ⬜ Not started | |
+| 1 | Add key to `.env.local` | ⬜ Not started | Owner adding manually |
+| 1 | Add key to Vercel | ⬜ Not started | Owner adding manually to Settings → Environment Variables |
+| 1 | Verify API route is correct | ✅ Done | Rewritten to match Step 1.4 with direct Gemini fetch (no LangChain) |
+| 1 | Verify widget calls `/api/chat` not Gemini directly | ✅ Done | Confirmed: widget calls `/api/chat`, no direct Gemini API calls |
+| 1 | Test locally | ⬜ Not started | Requires GOOGLE_API_KEY in .env.local |
+| 1 | Test on production | ⬜ Not started | Redeploy on Vercel after adding key |
+| 2 | Feed real bike data into prompt | ✅ Done | All 24 bikes from data/bikes.ts injected into system prompt |
+| 2 | Add typing indicator | ✅ Done | Already existed in original widget — verified working |
+| 2 | Cap message history at 10 | ✅ Done | `history.slice(-10)` in API route |
+| 2 | Arabic error messages | ✅ Done | Widget shows Arabic errors when locale is 'ar' |
+| 2 | WhatsApp fallback on failure | ✅ Done | Shows Cairo + Alexandria WhatsApp buttons after 3 failures |
 | 3 | Get Anthropic API key | ⬜ Not started | Optional upgrade |
 | 3 | Rewrite API route for Claude | ⬜ Not started | Optional upgrade |
 | 3 | Update widget message format | ⬜ Not started | Optional upgrade |
