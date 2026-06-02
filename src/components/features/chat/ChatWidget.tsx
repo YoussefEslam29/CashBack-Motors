@@ -35,6 +35,8 @@ export default function ChatWidget() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  // Phase 2: Track consecutive failures for WhatsApp fallback
+  const [failureCount, setFailureCount] = useState(0);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -86,44 +88,24 @@ export default function ChatWidget() {
         });
 
         if (response.ok) {
-          // Initialize an empty AI message to stream into
-          const aiMessageId = `ai-${Date.now()}`;
-          setMessages((prev) => [...prev, {
-            id: aiMessageId,
+          const data = await response.json();
+          const aiMessage: Message = {
+            id: `ai-${Date.now()}`,
             role: 'assistant',
-            content: '',
+            content: data.text || (isRTL ? 'عذراً، لم أتمكن من الرد.' : 'Sorry, I could not generate a response.'),
             timestamp: new Date(),
-          }]);
-
-          const reader = response.body?.getReader();
-          if (reader) {
-            const decoder = new TextDecoder();
-            let fullText = '';
-            
-            while (true) {
-              const { done, value } = await reader.read();
-              if (done) break;
-              
-              const chunk = decoder.decode(value, { stream: true });
-              fullText += chunk;
-              
-              setMessages((prev) => prev.map(msg => 
-                msg.id === aiMessageId ? { ...msg, content: fullText } : msg
-              ));
-            }
-          }
+          };
+          setMessages((prev) => [...prev, aiMessage]);
+          // Reset failure count on success
+          setFailureCount(0);
         } else {
-          // Attempt to parse JSON error message if the API returns a standard error object
-          let errorMessageContent = isRTL
+          // Phase 2: Increment failure count
+          setFailureCount((prev) => prev + 1);
+
+          // Phase 2: Arabic error messages
+          const errorMessageContent = isRTL
             ? 'عذراً، حدث خطأ. جرّب تاني أو تواصل معانا على واتساب.'
-            : 'Sorry, something went wrong. Please try again or reach us on WhatsApp.';
-            
-          try {
-            const data = await response.json();
-            if (data.error) errorMessageContent = data.error;
-          } catch (e) {
-            // fallback if not JSON
-          }
+            : 'Sorry, something went wrong. Try again or reach us on WhatsApp.';
 
           const errorMessage: Message = {
             id: `error-${Date.now()}`,
@@ -134,12 +116,15 @@ export default function ChatWidget() {
           setMessages((prev) => [...prev, errorMessage]);
         }
       } catch {
+        // Phase 2: Increment failure count on network errors
+        setFailureCount((prev) => prev + 1);
+
         const errorMessage: Message = {
           id: `error-${Date.now()}`,
           role: 'assistant',
           content: isRTL
-            ? 'عذراً، مفيش اتصال. جرّب تاني.'
-            : 'Sorry, connection failed. Please try again.',
+            ? 'عذراً، مفيش اتصال. جرّب تاني أو تواصل معانا على واتساب.'
+            : 'Sorry, connection failed. Try again or reach us on WhatsApp.',
           timestamp: new Date(),
         };
         setMessages((prev) => [...prev, errorMessage]);
@@ -285,6 +270,35 @@ export default function ChatWidget() {
                     <span className="w-2 h-2 rounded-full bg-text-muted animate-bounce" style={{ animationDelay: '150ms' }} />
                     <span className="w-2 h-2 rounded-full bg-text-muted animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Phase 2: WhatsApp fallback after 3 consecutive failures */}
+            {failureCount >= 3 && (
+              <div className="p-3 bg-[#1A1A1A] rounded-lg text-center animate-fade-in">
+                <p className="text-[#A0A0A0] text-sm mb-3">
+                  {isRTL
+                    ? 'فيه مشكلة؟ تواصل معانا مباشرة:'
+                    : 'Having trouble? Chat with us directly:'}
+                </p>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="https://wa.me/201005804463"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 h-10 px-4 bg-[#25D366] text-white text-sm font-semibold rounded-md hover:bg-[#20bd5a] transition-colors"
+                  >
+                    {isRTL ? 'واتساب القاهرة' : 'WhatsApp Cairo'}
+                  </a>
+                  <a
+                    href="https://wa.me/201110782513"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 h-10 px-4 bg-[#25D366] text-white text-sm font-semibold rounded-md hover:bg-[#20bd5a] transition-colors"
+                  >
+                    {isRTL ? 'واتساب الإسكندرية' : 'WhatsApp Alexandria'}
+                  </a>
                 </div>
               </div>
             )}
