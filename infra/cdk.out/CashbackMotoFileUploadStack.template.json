@@ -1,0 +1,1080 @@
+{
+ "Description": "CashBack Moto — S3 file upload bucket with CloudFront CDN and pre-signed URL API",
+ "Resources": {
+  "UploadBucketD2C1DA78": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "AES256"
+       }
+      }
+     ]
+    },
+    "CorsConfiguration": {
+     "CorsRules": [
+      {
+       "AllowedHeaders": [
+        "*"
+       ],
+       "AllowedMethods": [
+        "PUT",
+        "POST",
+        "GET",
+        "HEAD"
+       ],
+       "AllowedOrigins": [
+        "*"
+       ],
+       "ExposedHeaders": [
+        "ETag"
+       ],
+       "MaxAge": 3600
+      }
+     ]
+    },
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "Id": "archive-old-versions",
+       "NoncurrentVersionExpiration": {
+        "NoncurrentDays": 90
+       },
+       "NoncurrentVersionTransitions": [
+        {
+         "StorageClass": "STANDARD_IA",
+         "TransitionInDays": 30
+        }
+       ],
+       "Status": "Enabled"
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "VersioningConfiguration": {
+     "Status": "Enabled"
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadBucket/Resource"
+   }
+  },
+  "UploadBucketPolicy180778F4": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "UploadBucketD2C1DA78"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetObject",
+       "Condition": {
+        "StringEquals": {
+         "AWS:SourceArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":cloudfront::",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":distribution/",
+            {
+             "Ref": "UploadCDN57A6B62B"
+            }
+           ]
+          ]
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "cloudfront.amazonaws.com"
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "UploadBucketD2C1DA78",
+            "Arn"
+           ]
+          },
+          "/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadBucket/Policy/Resource"
+   }
+  },
+  "UploadBucketOAC90904162": {
+   "Type": "AWS::CloudFront::OriginAccessControl",
+   "Properties": {
+    "OriginAccessControlConfig": {
+     "Name": "CashbackMotoFileUploadStackUploadBucketOACF38FDFCB",
+     "OriginAccessControlOriginType": "s3",
+     "SigningBehavior": "no-override",
+     "SigningProtocol": "sigv4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadBucketOAC/Resource"
+   }
+  },
+  "UploadCDN57A6B62B": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "Comment": "CashBack Moto — File Upload CDN",
+     "DefaultCacheBehavior": {
+      "AllowedMethods": [
+       "GET",
+       "HEAD"
+      ],
+      "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+      "CachedMethods": [
+       "GET",
+       "HEAD"
+      ],
+      "Compress": true,
+      "TargetOriginId": "CashbackMotoFileUploadStackUploadCDNOrigin1DA39A46A",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "Enabled": true,
+     "HttpVersion": "http2and3",
+     "IPV6Enabled": true,
+     "Origins": [
+      {
+       "DomainName": {
+        "Fn::GetAtt": [
+         "UploadBucketD2C1DA78",
+         "RegionalDomainName"
+        ]
+       },
+       "Id": "CashbackMotoFileUploadStackUploadCDNOrigin1DA39A46A",
+       "OriginAccessControlId": {
+        "Fn::GetAtt": [
+         "UploadBucketOAC90904162",
+         "Id"
+        ]
+       },
+       "S3OriginConfig": {
+        "OriginAccessIdentity": ""
+       }
+      }
+     ],
+     "PriceClass": "PriceClass_100"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadCDN/Resource"
+   }
+  },
+  "GetPresignedUrlFnServiceRoleE0E4B0F7": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/GetPresignedUrlFn/ServiceRole/Resource"
+   }
+  },
+  "GetPresignedUrlFnServiceRoleDefaultPolicy83EEC210": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "UploadBucketD2C1DA78",
+            "Arn"
+           ]
+          },
+          "/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GetPresignedUrlFnServiceRoleDefaultPolicy83EEC210",
+    "Roles": [
+     {
+      "Ref": "GetPresignedUrlFnServiceRoleE0E4B0F7"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/GetPresignedUrlFn/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "GetPresignedUrlFnC560A958": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "e7fcf37e560c53d034a102b258258567a7f7d3eec2a357064895132045de4b48.zip"
+    },
+    "Description": "Generates S3 pre-signed PUT URLs for direct browser uploads",
+    "Environment": {
+     "Variables": {
+      "BUCKET_NAME": {
+       "Ref": "UploadBucketD2C1DA78"
+      },
+      "CDN_DOMAIN": {
+       "Fn::GetAtt": [
+        "UploadCDN57A6B62B",
+        "DomainName"
+       ]
+      },
+      "URL_EXPIRY_SECONDS": "300",
+      "MAX_FILE_SIZE": "52428800"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "GetPresignedUrlFnServiceRoleE0E4B0F7",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "GetPresignedUrlFnServiceRoleDefaultPolicy83EEC210",
+    "GetPresignedUrlFnServiceRoleE0E4B0F7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/GetPresignedUrlFn/Resource",
+    "aws:asset:path": "asset.e7fcf37e560c53d034a102b258258567a7f7d3eec2a357064895132045de4b48",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "UploadApi4355B020": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Description": "API to get pre-signed S3 upload URLs",
+    "Name": "CashbackMotoUploadApi"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Resource"
+   }
+  },
+  "UploadApiCloudWatchRoleD812835A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "apigateway.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+       ]
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/CloudWatchRole/Resource"
+   }
+  },
+  "UploadApiAccount345C610D": {
+   "Type": "AWS::ApiGateway::Account",
+   "Properties": {
+    "CloudWatchRoleArn": {
+     "Fn::GetAtt": [
+      "UploadApiCloudWatchRoleD812835A",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "UploadApi4355B020"
+   ],
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Account"
+   }
+  },
+  "UploadApiDeployment4A8E8152103f8969fd056dd0d2b62cc99a26a13e": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "API to get pre-signed S3 upload URLs",
+    "RestApiId": {
+     "Ref": "UploadApi4355B020"
+    }
+   },
+   "DependsOn": [
+    "UploadApigetuploadurlOPTIONS2DF42AA0",
+    "UploadApigetuploadurlPOST32AFC5D7",
+    "UploadApigetuploadurlEB1F17B6",
+    "UploadApiOPTIONS6AED07A8"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Deployment/Resource",
+    "aws:cdk:do-not-refactor": true
+   }
+  },
+  "UploadApiDeploymentStagev1492334BC": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "UploadApiDeployment4A8E8152103f8969fd056dd0d2b62cc99a26a13e"
+    },
+    "MethodSettings": [
+     {
+      "DataTraceEnabled": false,
+      "HttpMethod": "*",
+      "ResourcePath": "/*",
+      "ThrottlingBurstLimit": 100,
+      "ThrottlingRateLimit": 50
+     }
+    ],
+    "RestApiId": {
+     "Ref": "UploadApi4355B020"
+    },
+    "StageName": "v1"
+   },
+   "DependsOn": [
+    "UploadApiAccount345C610D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/DeploymentStage.v1/Resource"
+   }
+  },
+  "UploadApiOPTIONS6AED07A8": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "UploadApi4355B020",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "UploadApi4355B020"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Default/OPTIONS/Resource"
+   }
+  },
+  "UploadApigetuploadurlEB1F17B6": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "UploadApi4355B020",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "get-upload-url",
+    "RestApiId": {
+     "Ref": "UploadApi4355B020"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/Resource"
+   }
+  },
+  "UploadApigetuploadurlOPTIONS2DF42AA0": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "UploadApigetuploadurlEB1F17B6"
+    },
+    "RestApiId": {
+     "Ref": "UploadApi4355B020"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/OPTIONS/Resource"
+   }
+  },
+  "UploadApigetuploadurlPOSTApiPermissionCashbackMotoFileUploadStackUploadApi01A0B197POSTgetuploadurlBC1B9C8E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "GetPresignedUrlFnC560A958",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "UploadApi4355B020"
+       },
+       "/",
+       {
+        "Ref": "UploadApiDeploymentStagev1492334BC"
+       },
+       "/POST/get-upload-url"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/POST/ApiPermission.CashbackMotoFileUploadStackUploadApi01A0B197.POST..get-upload-url"
+   }
+  },
+  "UploadApigetuploadurlPOSTApiPermissionTestCashbackMotoFileUploadStackUploadApi01A0B197POSTgetuploadurl7D6F5504": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "GetPresignedUrlFnC560A958",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "UploadApi4355B020"
+       },
+       "/test-invoke-stage/POST/get-upload-url"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/POST/ApiPermission.Test.CashbackMotoFileUploadStackUploadApi01A0B197.POST..get-upload-url"
+   }
+  },
+  "UploadApigetuploadurlPOST32AFC5D7": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "GetPresignedUrlFnC560A958",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "UploadApigetuploadurlEB1F17B6"
+    },
+    "RestApiId": {
+     "Ref": "UploadApi4355B020"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/POST/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/22QTW7CMBCFz8LeTClQqdtQ1F1VFA6AjDOkA44decZFyMrdKztBsOjqfW9+NKO3hOXbOyxm+spz01zmlo6Q9qLNRekrHxKvIG2iuaCoj5ObaJSdt2Ruj/LkR7PRjIMy1sfmFLwTSPvVd6CWXGUMMn94J8HbvP1feUssgY5RyLs88+wHZXV3bDSkz+jMfeKZdxg6Yi6zpDtItbeYG0Uff480KF4dNDMKQ5VF6Z5aLXjVN0g1slQ9le0HVsb46ERtsbf+1qEr8Ty5vei2nByhRvYxGMyxqC+UH9/k5kT37nSk8DCo8kzeJ9eWoKL0UQblfINw5pff5Rpe17CYnZloHqIT6hDqUf8AopZzKdkBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "CashbackMotoFileUploadStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "UploadApiEndpoint85352627": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "UploadApi4355B020"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "UploadApiDeploymentStagev1492334BC"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "BucketName": {
+   "Description": "S3 bucket for uploaded files",
+   "Value": {
+    "Ref": "UploadBucketD2C1DA78"
+   }
+  },
+  "CDNDomain": {
+   "Description": "CloudFront CDN URL to access uploaded files",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "UploadCDN57A6B62B",
+        "DomainName"
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  "ApiEndpoint": {
+   "Description": "API Gateway base URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "UploadApi4355B020"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "UploadApiDeploymentStagev1492334BC"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "UploadEndpoint": {
+   "Description": "POST here to get a pre-signed upload URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "UploadApi4355B020"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "UploadApiDeploymentStagev1492334BC"
+      },
+      "/get-upload-url"
+     ]
+    ]
+   }
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

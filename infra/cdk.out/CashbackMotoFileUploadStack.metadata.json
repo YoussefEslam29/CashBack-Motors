@@ -1,0 +1,397 @@
+{
+  "/CashbackMotoFileUploadStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/BucketName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BucketName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:151:5)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/CDNDomain": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDNDomain"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:156:5)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/ApiEndpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiEndpoint"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:161:5)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadEndpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadEndpoint"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:166:5)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadBucketD2C1DA78"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:26:25)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadBucketOAC/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadBucketOAC90904162"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new S3OriginAccessControl2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:70:17)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadCDN/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadCDN57A6B62B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Distribution2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:74:16)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/GetPresignedUrlFn/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetPresignedUrlFnC560A958"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:96:23)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApi4355B020"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:120:16)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Account": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApiAccount345C610D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:120:16)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Endpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApiEndpoint85352627"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:120:16)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/CDKMetadata/Condition": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadataAvailable"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadBucketPolicy180778F4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/GetPresignedUrlFn/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetPresignedUrlFnServiceRoleE0E4B0F7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:96:23)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/CloudWatchRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApiCloudWatchRoleD812835A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:120:16)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Deployment/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApiDeployment4A8E8152103f8969fd056dd0d2b62cc99a26a13e"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:120:16)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/DeploymentStage.v1/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApiDeploymentStagev1492334BC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:120:16)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/GetPresignedUrlFn/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetPresignedUrlFnServiceRoleDefaultPolicy83EEC210"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Default/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApiOPTIONS6AED07A8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:120:16)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApigetuploadurlEB1F17B6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:140:42)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApigetuploadurlOPTIONS2DF42AA0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:140:42)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)"
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/POST/ApiPermission.CashbackMotoFileUploadStackUploadApi01A0B197.POST..get-upload-url": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApigetuploadurlPOSTApiPermissionCashbackMotoFileUploadStackUploadApi01A0B197POSTgetuploadurlBC1B9C8E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:141:20)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/POST/ApiPermission.Test.CashbackMotoFileUploadStackUploadApi01A0B197.POST..get-upload-url": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApigetuploadurlPOSTApiPermissionTestCashbackMotoFileUploadStackUploadApi01A0B197POSTgetuploadurl7D6F5504"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:141:20)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CashbackMotoFileUploadStack/UploadApi/Default/get-upload-url/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadApigetuploadurlPOST32AFC5D7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new FileUploadStack (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\lib\\file-upload-stack.ts:141:20)",
+        "<anonymous> (D:\\4) projects\\Websites\\CashBack Motors\\CashBack Motors\\infra\\bin\\infra.ts:8:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ]
+}
