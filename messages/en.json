@@ -167,13 +167,5 @@
   "languageSwitcher": {
     "en": "English",
     "ar": "عربي"
-  },
-  "chat": {
-    "title": "CashBack Moto AI",
-    "subtitle": "Online — Ask me anything",
-    "welcome": "Hey there! 👋 I'm your CashBack Moto assistant. I can help you find the perfect bike, compare models, or connect you with our branches. What are you looking for?",
-    "placeholder": "Type your message...",
-    "error": "Something went wrong. Please try again.",
-    "powered": "Powered by AI"
   }
 }
