@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import {
   Phone,
@@ -9,16 +9,16 @@ import {
   Users,
   Send,
   Navigation,
+  Star,
 } from 'lucide-react';
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa';
-import { LOCATIONS, SOCIAL_LINKS } from '@/lib/constants';
+import { GOOGLE_REVIEW_URLS, LOCATIONS, SOCIAL_LINKS, type BranchKey } from '@/lib/constants';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
+import { trackLead } from '@/lib/analytics';
 import SectionHeading from '@/components/ui/SectionHeading';
-import type { Locale } from '@/types';
 
 export default function ContactPage() {
   const t = useTranslations('contact');
-  const locale = useLocale() as Locale;
 
   const [form, setForm] = useState({
     name: '',
@@ -51,7 +51,26 @@ export default function ContactPage() {
     e.preventDefault();
     const msg = `Name: ${form.name}\nPhone: ${form.phone}\nMessage: ${form.message}`;
     const url = buildWhatsAppLink(selectedBranch, msg);
+    // Form sends open WhatsApp via window.open (not a link), so count the lead here.
+    trackLead({ method: 'whatsapp', branch: selectedBranch, page: window.location.pathname });
     window.open(url, '_blank');
+  };
+
+  // Shown only once the owner's Google review link is set in lib/constants.ts.
+  const reviewLink = (branch: BranchKey) => {
+    const href = GOOGLE_REVIEW_URLS[branch];
+    if (!href) return null;
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 p-3 bg-bg-elevated rounded-lg border border-border hover:border-warning transition-all duration-300"
+      >
+        <Star className="w-5 h-5 text-warning" />
+        <p className="text-text-primary font-medium">{t('reviewUs')}</p>
+      </a>
+    );
   };
 
   return (
@@ -90,6 +109,7 @@ export default function ContactPage() {
                   <p className="text-text-primary font-medium">{LOCATIONS.cairo.phone}</p>
                 </div>
               </a>
+              {reviewLink('cairo')}
             </div>
           </div>
 
@@ -121,6 +141,7 @@ export default function ContactPage() {
                   <p className="text-text-primary font-medium">{LOCATIONS.alexandria.phone}</p>
                 </div>
               </a>
+              {reviewLink('alexandria')}
             </div>
           </div>
 

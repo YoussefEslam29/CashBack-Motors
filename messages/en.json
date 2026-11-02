@@ -86,13 +86,41 @@
     "searchPlaceholder": "Search bikes...",
     "allBrands": "All Brands",
     "filters": "Filters",
-    "resultsCount": "{count} bikes found",
+    "resultsCount": "{count, plural, =1 {# bike found} other {# bikes found}}",
     "cairoWhatsapp": "Cairo WhatsApp",
     "alexWhatsapp": "Alex WhatsApp",
     "callCairo": "Call Cairo",
     "callAlex": "Call Alexandria",
     "new": "New",
-    "electric": "Electric"
+    "electric": "Electric",
+    "typeMotorcycle": "Motorcycle",
+    "typeScooter": "Scooter",
+    "clearSearch": "Clear search",
+    "related": "You May Also Like",
+    "relatedSubtitle": "More bikes like this one"
+  },
+  "specs": {
+    "engine": "Engine",
+    "power": "Power",
+    "topSpeed": "Top speed",
+    "transmission": "Transmission",
+    "fuelTank": "Fuel tank",
+    "weight": "Weight",
+    "brakes": "Brakes",
+    "battery": "Battery",
+    "range": "Range"
+  },
+  "meta": {
+    "siteTitle": "Cash Back Moto — Motorcycles & Scooters in Cairo & Alexandria",
+    "siteDescription": "Gas and electric motorcycles and scooters from ZONTES, KEEWAY, HOGAN, DAYUN, VIGOREY and more. Showrooms in Cairo and Alexandria — ask for the price on WhatsApp.",
+    "catalogTitle": "Motorcycles & Scooters Catalog",
+    "catalogDescription": "Browse {count} motorcycles and scooters from top brands. Filter by type and brand, then ask for the price on WhatsApp.",
+    "aboutTitle": "About Us",
+    "aboutDescription": "Cash Back Moto sells new motorcycles and scooters in Egypt, with showrooms in Cairo and Alexandria.",
+    "contactTitle": "Contact Us — Cairo & Alexandria Showrooms",
+    "contactDescription": "Call or WhatsApp our Cairo and Alexandria branches, get directions, or send us a message.",
+    "bikeTitle": "{name} — Price & Details",
+    "bikeDescription": "{name} ({type}) at Cash Back Moto, Cairo and Alexandria. Ask for the latest price and availability on WhatsApp."
   },
   "about": {
     "title": "About Cash Back Moto",
@@ -151,7 +179,8 @@
     "quickContact": "Quick Contact",
     "quickContactDesc": "Prefer to reach us directly? Use these quick contact options.",
     "cairoBranch": "Cairo Branch",
-    "alexBranch": "Alexandria Branch"
+    "alexBranch": "Alexandria Branch",
+    "reviewUs": "Review us on Google"
   },
   "footer": {
     "description": "Your trusted destination for motorcycles & scooters in Egypt. Gas and electric — we have it all.",

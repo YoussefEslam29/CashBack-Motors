@@ -18,6 +18,7 @@ import {
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { BRANDS, LOCATIONS, SOCIAL_LINKS } from '@/lib/constants';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
+import { bikes } from '@/data/bikes';
 import type { Locale } from '@/types';
 
 export default function AboutPage() {
@@ -31,11 +32,12 @@ export default function AboutPage() {
     { icon: Wrench, text: t('mission4') },
   ];
 
+  // TODO(owner): confirm bikes sold / customers / years — see PLAN/plan-business-growth.md (O5).
   const stats = [
     { icon: Package, value: '500+', label: t('statBikes') },
     { icon: Users, value: '400+', label: t('statCustomers') },
     { icon: Calendar, value: '3+', label: t('statYears') },
-    { icon: Award, value: '30+', label: t('statModels') },
+    { icon: Award, value: String(bikes.length), label: t('statModels') },
   ];
 
   const socials = [

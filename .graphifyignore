@@ -1,0 +1,85 @@
+# .graphifyignore - what Graphify must NOT read when it builds the code map.
+# IMPORTANT: when this file exists, Graphify stops reading .gitignore in this
+# folder, so everything from .gitignore is copied below. Keep secrets (.env)
+# and build folders in here.
+
+# ---------- copied from .gitignore ----------
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# credentials: service-account / admin SDK keys
+*firebase-adminsdk*.json
+service-account*.json
+serviceAccountKey.json
+*.p12
+*.key
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+idea.md
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# env files (can opt-in for committing if needed)
+.env
+.env.example
+.env.local
+.env.production
+.env.test
+
+# graphify knowledge-graph output: regenerated locally with /graphify, never committed
+/graphify-out/
+
+# ---------- extra noise for the map ----------
+graphify-out/
+# AWS CDK: generated output and the feature-flag settings file
+# (cdk.json alone created the "flags" hub and ~15 "CDK Flag" groups)
+infra/cdk.out/
+infra/node_modules/
+infra/cdk.json
+# compiler settings and lock files
+**/tsconfig.json
+*.tsbuildinfo
+**/package-lock.json
+.vscode/
+# bike photos and icons (the AI has to "look" at every image, which costs a lot)
+# delete these lines if you want photos in the map
+public/**/*.webp
+public/**/*.jpg
+public/**/*.jpeg
+public/**/*.png
+public/**/*.svg

@@ -115,7 +115,7 @@ messages/
   en.json                 ← English translations
   ar.json                 ← Arabic translations
 
-middleware.ts             ← locale detection + redirect
+src/proxy.ts              ← locale detection + redirect (Next 16 renamed middleware.ts → proxy.ts; never add a middleware.ts too)
 .env.example
 ```
 
@@ -132,7 +132,7 @@ Follow this exact sequence — later steps depend on earlier ones:
 5. `src/data/brands.ts`
 6. `src/data/bikes.ts`
 7. `messages/en.json` + `messages/ar.json`
-8. `middleware.ts`
+8. `src/proxy.ts` (was `middleware.ts` before Next 16)
 9. `src/app/[locale]/layout.tsx` (fonts here)
 10. `src/components/layout/` (Navbar, Footer, WhatsAppButton, LanguageSwitcher)
 11. `src/components/ui/` (Button, Badge, SectionHeading)

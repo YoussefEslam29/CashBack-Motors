@@ -3,11 +3,17 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Bike, Zap, Gauge } from "lucide-react";
+import { bikes } from "@/data/bikes";
+import { hasElectricBikes } from "@/lib/utils";
+
+// The Electric tile only shows once electric bikes are added to data/bikes.ts,
+// so customers never land on an empty "Electric" page.
+const showElectric = hasElectricBikes(bikes);
 
 export default function CategoryStrip() {
   const t = useTranslations("categories");
 
-  const categories = [
+  const allCategories = [
     {
       icon: Bike,
       label: t("motorcycles"),
@@ -25,11 +31,12 @@ export default function CategoryStrip() {
     {
       icon: Zap,
       label: t("electric"),
-      href: "/catalog?type=electric",
+      href: "/catalog?fuel=electric",
       iconColor: "text-success",
       borderColor: "group-hover:border-success/50",
     },
   ];
+  const categories = showElectric ? allCategories : allCategories.slice(0, 2);
 
   return (
     <section className="py-20 relative">
@@ -39,7 +46,7 @@ export default function CategoryStrip() {
           <span className="gradient-text">{t("title")}</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className={`grid grid-cols-1 gap-6 ${showElectric ? "md:grid-cols-3" : "md:grid-cols-2 max-w-4xl mx-auto"}`}>
           {categories.map((cat, index) => (
             <Link
               key={cat.label}

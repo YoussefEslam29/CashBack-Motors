@@ -1,60 +1,69 @@
 'use client';
 
-import { useLocale } from 'next-intl';
-import { SlidersHorizontal, ChevronDown, X } from 'lucide-react';
-import { BRANDS } from '@/lib/constants';
-import type { Locale } from '@/types';
+import { useTranslations } from 'next-intl';
+import { SlidersHorizontal, ChevronDown, X, Zap } from 'lucide-react';
+import type { CatalogFilters } from './CatalogView';
+import type { Brand } from '@/types';
 
 interface FilterBarProps {
-  typeFilter: string;
-  brandFilter: string;
-  search: string;
-  onTypeChange: (v: string) => void;
-  onBrandChange: (v: string) => void;
-  onSearchChange: (v: string) => void;
+  filters: CatalogFilters;
+  /** Only brands that have bikes in the catalogue, so no filter leads to "No results". */
+  stockedBrands: Brand[];
+  /** The Electric toggle only appears once electric bikes are in the catalogue. */
+  showElectric: boolean;
+  onChange: (patch: Partial<CatalogFilters>) => void;
   onClear: () => void;
   showFilters: boolean;
   onToggleFilters: () => void;
 }
 
+const pill = (active: boolean) =>
+  `px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+    active
+      ? 'bg-primary text-white'
+      : 'bg-bg-surface border border-border text-text-secondary hover:border-primary hover:text-white'
+  }`;
+
 export default function FilterBar({
-  typeFilter,
-  brandFilter,
-  search,
-  onTypeChange,
-  onBrandChange,
-  onSearchChange,
+  filters,
+  stockedBrands,
+  showElectric,
+  onChange,
   onClear,
   showFilters,
   onToggleFilters,
 }: FilterBarProps) {
-  const locale = useLocale() as Locale;
-  const isArabic = locale === 'ar';
+  const t = useTranslations('catalog');
 
   const typeButtons = [
-    { key: 'all', label: isArabic ? 'الكل' : 'All' },
-    { key: 'motorcycle', label: isArabic ? 'موتوسيكل' : 'Motorcycle' },
-    { key: 'scooter', label: isArabic ? 'سكوتر' : 'Scooter' },
-  ];
+    { key: 'all', label: t('filterAll') },
+    { key: 'motorcycle', label: t('typeMotorcycle') },
+    { key: 'scooter', label: t('typeScooter') },
+  ] as const;
 
   const hasActiveFilters =
-    search || typeFilter !== 'all' || brandFilter !== 'all';
+    filters.search ||
+    filters.type !== 'all' ||
+    filters.fuel !== 'all' ||
+    filters.brand !== 'all';
 
   return (
     <div className="mb-8 space-y-4">
       {/* Search */}
       <div className="relative max-w-xl mx-auto">
         <input
-          type="text"
-          value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder={isArabic ? 'ابحث عن موتوسيكل أو سكوتر...' : 'Search motorcycles and scooters...'}
-          className="w-full pl-4 pr-10 py-3 bg-bg-surface border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all"
+          type="search"
+          value={filters.search}
+          onChange={(e) => onChange({ search: e.target.value })}
+          placeholder={t('searchPlaceholder')}
+          aria-label={t('searchPlaceholder')}
+          className="w-full ps-4 pe-10 py-3 bg-bg-surface border border-border rounded-md text-text-primary placeholder-text-muted focus:border-primary focus:outline-none transition-all"
         />
-        {search && (
+        {filters.search && (
           <button
-            onClick={() => onSearchChange('')}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
+            onClick={() => onChange({ search: '' })}
+            aria-label={t('clearSearch')}
+            className="absolute end-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
           >
             <X className="w-4 h-4" />
           </button>
@@ -65,14 +74,13 @@ export default function FilterBar({
       <div className="flex justify-center md:hidden">
         <button
           onClick={onToggleFilters}
+          aria-expanded={showFilters}
           className="flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-md text-text-secondary hover:border-primary hover:text-primary transition-all"
         >
           <SlidersHorizontal className="w-4 h-4" />
-          {isArabic ? 'الفلاتر' : 'Filters'}
+          {t('filters')}
           <ChevronDown
-            className={`w-3 h-3 transition-transform duration-300 ${
-              showFilters ? 'rotate-180' : ''
-            }`}
+            className={`w-3 h-3 transition-transform duration-300 ${showFilters ? 'rotate-180' : ''}`}
           />
         </button>
       </div>
@@ -80,49 +88,56 @@ export default function FilterBar({
       {/* Filters */}
       <div
         className={`flex flex-wrap items-center justify-center gap-3 ${
-          showFilters ? 'block' : 'hidden md:flex'
+          showFilters ? 'flex' : 'hidden md:flex'
         }`}
       >
-        {/* Type pills */}
         {typeButtons.map((btn) => (
           <button
             key={btn.key}
-            onClick={() => onTypeChange(btn.key)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              typeFilter === btn.key
-                ? 'bg-primary text-white'
-                : 'bg-bg-surface border border-border text-text-secondary hover:border-primary hover:text-white'
-            }`}
+            onClick={() => onChange({ type: btn.key })}
+            aria-pressed={filters.type === btn.key}
+            className={pill(filters.type === btn.key)}
           >
             {btn.label}
           </button>
         ))}
 
+        {showElectric && (
+          <button
+            onClick={() => onChange({ fuel: filters.fuel === 'electric' ? 'all' : 'electric' })}
+            aria-pressed={filters.fuel === 'electric'}
+            className={`${pill(filters.fuel === 'electric')} flex items-center gap-1.5`}
+          >
+            <Zap className="w-3.5 h-3.5" />
+            {t('filterElectric')}
+          </button>
+        )}
+
         {/* Brand select */}
         <div className="relative">
           <select
-            value={brandFilter}
-            onChange={(e) => onBrandChange(e.target.value)}
-            className="appearance-none bg-bg-surface border border-border rounded-md px-4 py-2 pr-10 text-sm font-medium text-text-secondary hover:border-primary focus:border-primary focus:outline-none transition-all cursor-pointer"
+            value={filters.brand}
+            onChange={(e) => onChange({ brand: e.target.value as CatalogFilters['brand'] })}
+            aria-label={t('allBrands')}
+            className="appearance-none bg-bg-surface border border-border rounded-md ps-4 pe-10 py-2 text-sm font-medium text-text-secondary hover:border-primary focus:border-primary focus:outline-none transition-all cursor-pointer"
           >
-            <option value="all">{isArabic ? 'كل الماركات' : 'All Brands'}</option>
-            {BRANDS.map((brand) => (
+            <option value="all">{t('allBrands')}</option>
+            {stockedBrands.map((brand) => (
               <option key={brand} value={brand}>
                 {brand}
               </option>
             ))}
           </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
+          <ChevronDown className="absolute end-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
         </div>
 
-        {/* Clear */}
         {hasActiveFilters && (
           <button
             onClick={onClear}
             className="text-sm text-primary hover:text-primary-hover transition-colors flex items-center gap-1"
           >
             <X className="w-3 h-3" />
-            {isArabic ? 'مسح الفلاتر' : 'Reset'}
+            {t('resetFilters')}
           </button>
         )}
       </div>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { SITE_URL } from "@/lib/constants";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
+// The real <html>/<body> live in [locale]/layout.tsx (lang + dir per locale).
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Cash Back Moto",
-  description: "Premium motorcycles & scooters in Egypt",
+  description: "Motorcycles & scooters in Cairo and Alexandria, Egypt",
 };
 
 export default function RootLayout({

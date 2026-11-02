@@ -1,40 +1,32 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import Image from 'next/image';
-import { ArrowRight, MessageCircle } from 'lucide-react';
-import { bikes } from '@/data/bikes';
-import { bikeInquiryLink } from '@/lib/whatsapp';
-import { getFeaturedBikes } from '@/lib/utils';
-import Badge from '@/components/ui/Badge';
-import SectionHeading from '@/components/ui/SectionHeading';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import type { Locale } from '@/types';
+import { bikes } from '@/data/bikes';
+import { getFeaturedBikes } from '@/lib/utils';
+import BikeCard from '@/components/features/catalog/BikeCard';
+import SectionHeading from '@/components/ui/SectionHeading';
+
+const featured = getFeaturedBikes(bikes);
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring' as const, stiffness: 50, damping: 15 },
+  },
+};
 
 export default function FeaturedBikes() {
-  const locale = useLocale() as Locale;
-  const isArabic = locale === 'ar';
-  const featured = getFeaturedBikes(bikes);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      transition: { type: 'spring' as const, stiffness: 50, damping: 15 }
-    },
-  };
+  const t = useTranslations('featured');
 
   return (
     <section className="py-20 relative overflow-hidden">
@@ -44,102 +36,33 @@ export default function FeaturedBikes() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <SectionHeading
-            eyebrow={isArabic ? 'مختارات' : 'Our Selection'}
-            title={isArabic ? 'موديلات مميزة' : 'Featured Models'}
-            subtitle={isArabic ? 'اكتشف أبرز موتوسيكلات وسكوترات متاحة عندنا' : 'Discover the top motorcycles and scooters available at our showroom'}
-          />
+          <SectionHeading eyebrow={t('eyebrow')} title={t('title')} subtitle={t('subtitle')} />
         </motion.div>
 
-        {/* Product Grid */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {featured.map((bike) => {
-            const name = isArabic ? bike.name.ar : bike.name.en;
-
-            return (
-              <motion.div
-                variants={itemVariants}
-                key={bike.id}
-                className="bg-bg-surface backdrop-blur-md border border-border/50 rounded-lg overflow-hidden hover:border-primary hover:shadow-glow-red hover:bg-bg-elevated/50 transition-all duration-300 group"
-              >
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-bg-elevated">
-                  <Image
-                    src={bike.images[0] ?? '/images/placeholder.jpg'}
-                    alt={name}
-                    width={560}
-                    height={420}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent" />
-
-                  {/* Brand badge */}
-                  <div className="absolute top-3 left-3">
-                    <Badge variant="primary">{bike.make}</Badge>
-                  </div>
-
-                  {/* Type badge */}
-                  <div className="absolute top-3 right-3">
-                    <Badge variant="primary">
-                      {bike.type === 'scooter' ? (isArabic ? 'سكوتر' : 'Scooter') : (isArabic ? 'موتوسيكل' : 'Motorcycle')}
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-zinc-50 mb-2 group-hover:text-primary transition-colors">
-                    {name}
-                  </h3>
-
-                  {/* Contact for pricing */}
-                  <p className="text-sm text-text-secondary mb-5 leading-relaxed">
-                    {isArabic
-                      ? 'تواصل معنا لمعرفة السعر الحالي وتفاصيل التوافر.'
-                      : 'Contact us for current pricing and availability.'}
-                  </p>
-
-                  {/* Actions */}
-                  <div className="flex items-center gap-3">
-                    <Link
-                      href={`/catalog/${bike.slug}`}
-                      className="flex-1 min-h-12 flex items-center justify-center text-center text-sm font-medium text-text-secondary border border-zinc-700 rounded-md hover:border-primary hover:text-primary transition-all duration-300"
-                    >
-                      {isArabic ? 'التفاصيل' : 'Details'}
-                    </Link>
-                    <a
-                      href={bikeInquiryLink(name, 'cairo', locale)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 min-h-12 flex items-center justify-center gap-2 text-center text-sm font-medium bg-success/10 text-success border border-success/20 rounded-md hover:bg-success/20 transition-all duration-300"
-                    >
-                      <MessageCircle className="w-4 h-4" />
-                      {isArabic ? 'استفسار' : 'Inquire'}
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {featured.map((bike) => (
+            <motion.div variants={itemVariants} key={bike.id}>
+              <BikeCard bike={bike} />
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* View All */}
         <div className="text-center mt-12">
           <Link
             href="/catalog"
             className="inline-flex min-h-12 items-center justify-center gap-2 px-8 border border-primary text-primary rounded-md font-medium hover:bg-primary hover:text-white transition-all duration-300 group"
           >
-            {isArabic ? 'عرض الكل' : 'View All'}
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            {t('viewAll')}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform rtl:rotate-180 rtl:group-hover:-translate-x-1" />
           </Link>
         </div>
       </div>
